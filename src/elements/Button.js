@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const Button = (props) => {
 
-    const { text, _onClick, children, margin, width, height, fs, bg, rad } = props
+    const { text, _onClick, children, margin, width, height, fs, fc, bg, rad } = props
 
     const styles = {
         margin,
@@ -11,6 +11,7 @@ const Button = (props) => {
         height,
         //폰트 사이즈
         fs,
+        fc,
         //배경색
         bg,
         //border-radius
@@ -31,7 +32,7 @@ Button.defaultProps = {
     width: '100%',
     height: '100%',
     rad: false,
-    bg: '#212121',
+    color: '#fff',
     _onClick: () => { }
 }
 
@@ -40,13 +41,14 @@ const ELButton = styled.button`
     height: ${(props) => props.height};
     ${(props) => (props.margin ? `margin: ${props.margin}` : '')};
     background-color: ${(props) => props.bg};
-    color: #fff;
+    font-size: ${(props) => props.fs};
+    color: ${(props) => props.fc};
     padding: 12px 0px;
     box-sizing: border-box;
     border: none;
     border-radius: ${(props) => props.rad};
     :hover {
-        background-color: #888;
+        background-color: #fa0;
         cursor: pointer;
     }
 `

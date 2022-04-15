@@ -33,7 +33,7 @@ const Image = (props) => {
 
 Image.defaultProps = {
     shape: 'rectangle',
-    src: 'http://scuba365.co.kr/web/upload/NNEditor/20160804/copy(1470241074)-02.jpg',
+    src: 'https://www.daangn.com/logo.png',
     size: 36,
     width: '100%',
     height: '100%',
@@ -52,14 +52,13 @@ const Inner = styled.div`
     /* height: ${(props) => props.size}px; */
     /* max-width: 54vw; */
     /* max-height: 54vh; */
-
+    
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     
     overflow: hidden;
     background-image: url('${(props) => props.src}');
-    
 `
 
 const ImageCircle = styled.div`

@@ -4,13 +4,13 @@ import { Grid, Text } from './index'
 
 const Input = (props) => {
 
-    const { label, placeholder, width, max_width, _onChange, type, multiLine, value } = props
+    const { label, placeholder, width, max_width, _onChange, type, multiLine, value, bg } = props
 
     if (multiLine) {
         return (
             <Grid>
                 {label && <Text margin='0px'>{label}</Text>}
-                <ElTextarea rows={10} width={width} max_width={max_width} placeholder={placeholder} onChange={_onChange}></ElTextarea>
+                <ElTextarea rows={10} width={width} max_width={max_width} bg={bg} placeholder={placeholder} onChange={_onChange}></ElTextarea>
             </Grid>
         )
     }
@@ -19,7 +19,7 @@ const Input = (props) => {
         <React.Fragment>
             <Grid>
                 {label && <Text margin='0px'>{label}</Text>}
-                <ElInput type={type} width={width} placeholder={placeholder} onChange={_onChange}></ElInput>
+                <ElInput type={type} width={width} placeholder={placeholder} bg={bg} onChange={_onChange}></ElInput>
             </Grid>
         </React.Fragment>
     )
@@ -34,6 +34,7 @@ Input.defaultProps = {
     type: 'text',
     _onChange: () => { },
     value: '',
+    bg: false,
 }
 
 const ElTextarea = styled.textarea`
@@ -53,6 +54,9 @@ const ElInput = styled.input`
     width: ${(props) => props.width};
     padding: 12px 4px;
     box-sizing: border-box;
+    font-size: 20px;
+    
+    background-color: ${(props) => props.bg};
 `
 
 export default Input;
