@@ -10,8 +10,8 @@ export default function Detail(props) {
             <Grid>
                 <Grid flex_space>
                     <div style={{ display: 'flex', width: '60%' }}>
-                        <Button fs='2vw' width='10%' margin='0 10px 0 0' _onClick={() => history.goBack()}>back</Button>
-                        <Button fs='2vw' width='10%' margin='0 10px 0 0' _onClick={() => history.push('/')}>Home</Button>
+                        <Button fs='2vw' width='20%' margin='0 10px 0 0' _onClick={() => history.goBack()}>back</Button>
+                        <Button fs='2vw' width='20%' margin='0 10px 0 0' _onClick={() => history.push('/')}>Home</Button>
                     </div>
                     <div style={{ right: '0px', width: '60%', textAlign: 'right' }}><Button fs='2vw' width='10%' margin='0 10px 0 0'>...</Button></div>
                 </Grid>
@@ -20,14 +20,14 @@ export default function Detail(props) {
                         <Image></Image>
                     </Grid>
                     <Grid flex_space width='90%' margin='auto'>
-                        <Grid flex_space width='100%' margin='0 0px 0 0'>
+                        <Grid flex_space width='100%'>
                             <Grid width='100%'><Image src={'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxIHBg8SBw4PEhATDg0PFRAPEA8ODQ0RFREWFhURExYYKCggGBslHRUfITEhJSkrLi4uFx8zODMtNyg5OisBCgoKDg0OFw8QGjIlHSItNy0tKy4tKzctLy0tKzgtLS0tLSstLi0rNy0tLC0tKy0rOC0tKy03LS0rLTctKy0rN//AABEIAOAA4QMBIgACEQEDEQH/xAAaAAEAAgMBAAAAAAAAAAAAAAAABAUCAwYB/8QANhABAAECAgYIBAUFAQAAAAAAAAECAwQRBSExUWFxEhMiMkGRocEzcoGxNFJiotEUQoLh8SP/xAAZAQEBAQEBAQAAAAAAAAAAAAAAAwIBBAX/xAAdEQEBAQEAAgMBAAAAAAAAAAAAAQIRAzESIUET/9oADAMBAAIRAxEAPwDrAH0XzQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAe00zVPZiZ5a26nB3KtlE/XKHOu8aBInBXI/s8piWmuiaJ7cTHOMjsOViA64AAAAAAAAAAAAAAAAAAAAAAJ+F0f0ozv6v0+P1Z6OwuURXcjX4Ru4rBLW/yK5x+1jbtxbjKiIjkyBNQeVUxVGVURMcXoCBidHRMZ2NU/l8J5KyqOjOVW10SHj8L1tHSojtR+6FM7/KnrH7FSAqkAAAAAAAAAAAAAAAAAANuEtddfiPDbPKGpYaIo7VU8oZ1eRrM7VlGqNQCC4AAAAACm0hZ6rETlsnXHujLTS1Gdqmd1WXnCrXzexDU5QBpkAAAAAAAAAAAAAAAAWeiPhVfNH2VifomvK5VG+Iny/wCs79N49rMBBYAAAAABE0p+F/ypVCz0tX2KaeOfkrFsekd+wBtgAAAAAAAAAAAAAAAAZ2LnU3YqjwnzhgDroaKorpiadkxm9VOAxfUz0bnd3/l/0tonONSGpxfN7ABl0AAJnKNYrdIYzOJotTzn2h2TrlvEXGXuvvzMbNkcmkF4hQB1wAAAAAAAAAAAAAAAAAASMNjKrGqNdO6fZHHLOuy8XNrHUXNs5Tun+UiKoq2TDniJy2MXxtzyOimctrRdxdFrbVE8I1ypJnPaH8y+RLxOOqvRlR2afWUQG5OMW9AHXAAAAAAAAAAAAAAAAAAAZ2bNV6rK3H8Qs8Po+m3rudqf2s3UjUzarLdmq7P/AJ0zP2Srejaqu/MR6ytYjKNQnd1SYiDToymO9VVPLKGcaOo/V5pY58q18YiTo6jj5sKtGUz3aqo55SnB8qfGKq5oyqO5MT6Si3bNVr4lMx9l+TGca3Zus3Ec6Le/o+m58Pszw2eSsv2KrFWVyPr4SpNSp3NjWA0yAAAAAAAAAAAAAAJGDwk4ic51U79/CHmDw/8AUXOEbZ9l1RTFFMRTGUQxrXPpTOe/by3bi1RlbjKGQIqgAAAAAAADG5RFynKuM4ZAKfGYObE5066fWOaK6GqOlTlVsU2Nw39PX2e7OzhwVzrv1UtZ59xHAUTAAAAAAAAAACmOlVEU7Z1Cbou10rs1TsjZzly3kdk7eLDDWYsWoiPrO+W0HnegAAAAAAAAAAAAYX7UXrUxV4+k72YDnrlE265irbE5PFhpWzlMVRyn2V70S9iFnKAOsgAAAAAAAC60fb6GFp46/NS7XQ0R0aIiPCIhPyVTxx6AkqAAAAAAAAAAAAAA1Yu31uHqjhn9YULo3P3aehdqjdVMeqvjqfkjEBRIAAAAAAABlajO7T80fd0Cgs/Gp+an7r9LyK+MATUAAAAAAAAAAAAAAFHjIyxVfzLxR438XXz9lPH7Y8nppAVRAAAAf//Z'}></Image></Grid>
-                            <Grid>
-                                <Text size='4vw'>아이디</Text>
-                                <Text size='4vw'>항해동</Text>
+                            <Grid margin='0 0 0 30%'>
+                                <Text size='3vw'>아이디</Text>
+                                <Text size='3vw'>항해동</Text>
                             </Grid>
                         </Grid>
-                        <Grid flex_col margin='0 0 0 40%'>
+                        <Grid flex_col margin='0 0 0 20%'>
                             <Text size='4vw'>36.5</Text>
                             <Grid width='30%'><Image></Image></Grid>
                         </Grid>
@@ -38,7 +38,7 @@ export default function Detail(props) {
                 <Grid>
                     <Grid>
                         <Grid flex='1'>
-                            <div style={{margin:'0 100px'}}>
+                            <div style={{margin:'0 10%'}}>
                                 <select style={{ width: '12vw', height: '4vh', margin: '0 5px', fontSize: '2vw', textAlign: 'center' }} onChange={(e) => { }}>
                                     <option value=""></option>
                                     <option value="거래완료">거래완료</option>
