@@ -4,13 +4,13 @@ import { Grid, Text } from './index'
 
 const Input = (props) => {
 
-    const { label, placeholder, width, max_width, _onChange, type, multiLine, value, bg } = props
+    const { label, placeholder, width, max_width, _onChange, type, multiLine, value, bg, color } = props
 
     if (multiLine) {
         return (
             <Grid>
                 {label && <Text margin='0px'>{label}</Text>}
-                <ElTextarea rows={10} width={width} max_width={max_width} bg={bg} placeholder={placeholder} onChange={_onChange}></ElTextarea>
+                <ElTextarea rows={10} color={color} width={width} max_width={max_width} bg={bg} placeholder={placeholder} onChange={_onChange}></ElTextarea>
             </Grid>
         )
     }
@@ -19,7 +19,7 @@ const Input = (props) => {
         <React.Fragment>
             <Grid>
                 {label && <Text margin='0px'>{label}</Text>}
-                <ElInput type={type} width={width} placeholder={placeholder} bg={bg} onChange={_onChange}></ElInput>
+                <ElInput type={type} color={color} width={width} placeholder={placeholder} bg={bg} onChange={_onChange}></ElInput>
             </Grid>
         </React.Fragment>
     )
@@ -35,9 +35,11 @@ Input.defaultProps = {
     _onChange: () => { },
     value: '',
     bg: false,
+    color: 'black',
 }
 
 const ElTextarea = styled.textarea`
+    color: ${(props) => props.color};
     border: 0px;
     width: ${(props) => props.width};
     max-width: ${(props) => props.max_width};
@@ -45,17 +47,27 @@ const ElTextarea = styled.textarea`
     max-height: 200px;
     min-height: 100px;
     padding: 12px 4px;
+    font-size: 20px;
     box-sizing: border-box;
     resize: none;
+    
+    ::placeholder {
+        color:#ccc;
+    }
+    background-color: ${(props) => props.bg};
 `
 
 const ElInput = styled.input`
+    color: ${(props) => props.color};
     border: 0px;
     width: ${(props) => props.width};
     padding: 12px 4px;
     box-sizing: border-box;
     font-size: 20px;
-    
+
+    ::placeholder {
+        color:#ccc;
+    }
     background-color: ${(props) => props.bg};
 `
 
