@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const Button = (props) => {
 
-    const { text, _onClick, children, margin, width, height, fs, fc, bg, rad } = props
+    const { text, _onClick, children, margin, width, height, fs, fc, bg, rad, hoverbg } = props
 
     const styles = {
         margin,
@@ -16,6 +16,7 @@ const Button = (props) => {
         bg,
         //border-radius
         rad,
+        hoverbg,
     }
 
     return (
@@ -48,7 +49,7 @@ const ELButton = styled.button`
     border: none;
     border-radius: ${(props) => props.rad};
     :hover {
-        background-color: #fa0;
+        background-color: ${(props) => props.hoverbg ? props.hoverbg : '#fa0'};
         cursor: pointer;
     }
 `

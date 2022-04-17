@@ -8,6 +8,7 @@ const Grid = (props) => {
     flex_col,
     width,
     max_width,
+    min_width,
     height,
     padding,
     margin,
@@ -30,6 +31,7 @@ const Grid = (props) => {
     flex_col,
     width,
     max_width,
+    min_width,
     height,
     padding,
     margin,
@@ -61,6 +63,7 @@ Grid.defaultProps = {
   flex_space: false,
   width: "100%",
   max_width: "100%",
+  min_width: '0%',
   height: "100%",
   padding: false,
   margin: false,
@@ -83,6 +86,7 @@ const GridBox = styled.div`
             `}
   width: ${(props) => props.width};
   max-width: ${(props) => props.max_width};
+  min-width: ${(props) => props.min_width};
   /* max-width: 800px; */
   height: ${(props) => props.height};
   box-sizing: border-box;
