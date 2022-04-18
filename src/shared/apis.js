@@ -1,16 +1,16 @@
 import axios from "axios";
 
 export const instance = axios.create({
-  // baseURL :
+  baseURL : 'http://52.79.226.206'
   // headers:
 });
 
 // 헤더에 토큰 보내기
-// instance.interceptors.request.use(function (config) {
-//   const accessToken = document.cookie.split("=")[1];
-//   config.headers.common["Authorization"] = `Bearer ${accessToken}`;
-//   return config;
-// });
+instance.interceptors.request.use(function (config) {
+  const accessToken = document.cookie.split("=")[1];
+  config.headers.common["Authorization"] = `${accessToken}`;
+  return config;
+});
 
 export const apis = {
   // 로그인 POST
@@ -19,7 +19,7 @@ export const apis = {
 
   // 회원가입 POST
   signup: (username, password, passwordcheck) =>
-    instance.post("/user/join", {
+    instance.post("/user/signup", {
       username: username,
       password: password,
       passwordcheck: passwordcheck,
@@ -55,9 +55,8 @@ export const apis = {
   detailPost: (postId) => instance.get(`/api/post/${postId}`),
 
   // 거래 상태 수정 POST
-  stateEdit: (postId, username, status) =>
-    instance.post(`/api/status/${postId}`, {
-      username: username,
+  stateEdit: (postid, status) =>
+    instance.put(`/api/status/${postid}`, {
       status: status,
     }),
 

@@ -6,13 +6,16 @@ import image from "./modules/image";
 
 import User from "./modules/user";
 import Etc from "./modules/etc_mod";
+import Post from "./modules/Post";
+import Image from './modules/image'
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
     User,
     Etc,
-    image: image,
+    Post,
+    Image,
     router: connectRouter(history),
 });
 

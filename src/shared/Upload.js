@@ -3,10 +3,13 @@ import { CardGrid, Image } from "../elements";
 import { BiX } from "react-icons/bi";
 import styled from "styled-components";
 import { HiUpload } from "react-icons/hi";
+import { useDispatch } from "react-redux";
 
 const Upload = () => {
   const [imgPreview, setImgPreview] = useState([]);
-  const [postFiles, setPostFiles] = useState(null);
+  const [postFiles, setPostFiles] = useState([]);
+
+  const dispatch = useDispatch()
 
   const uploadFile = (e) => {
     const imageList = e.target.files;
@@ -27,59 +30,59 @@ const Upload = () => {
     setImgPreview(imgPreview.filter((b, idx) => idx !== id));
   };
 
+  // return (
+  //   <>
+  //     <div>
+  //       <label htmlFor="files" onChange={uploadFile}>
+  //         <input type="file" id="files" multiple="multiple" />
+  //       </label>
+  //       {imgPreview.map((image, id) => {
+  //         return (
+  //           <div key={id}>
+  //             <but
+  //               type="button"
+  //               onClick={() => {
+  //                 handleDeleteImage(id);
+  //               }}
+  //             >
+  //               X
+  //             </but>
+
+  //             <Image src={`${image}`} alt={`${image}-${id}`} />
+  //           </div>
+  //         );
+  //       })}
+  //     </div>
+  //   </>
+  // );
+  // };
+
+  // CSS준 버전
   return (
     <>
-      <div>
-        <label htmlFor="files" onChange={uploadFile}>
-          <input type="file" id="files" multiple="multiple" />
-        </label>
+      <CardGrid is_flex width="auto">
+        <Labels htmlFor="files" onChange={uploadFile}>
+          <HiUpload />
+          <Inputs type="file" id="files" multiple="multiple" />
+        </Labels>
         {imgPreview.map((image, id) => {
           return (
-            <div key={id}>
-              <but
+            <CardGrid key={id} margin='0 50px 50px 0'>
+              <BiX
                 type="button"
                 onClick={() => {
                   handleDeleteImage(id);
                 }}
-              >
-                X
-              </but>
+              />
 
-              <Image src={`${image}`} alt={`${image}-${id}`} />
-            </div>
+              <ImageList src={`${image}`} alt={`${image}-${id}`} />
+            </CardGrid>
           );
         })}
-      </div>
+      </CardGrid>
     </>
   );
 };
-
-// CSS준 버전
-// return (
-//   <>
-//     <CardGrid is_flex width="auto">
-//       <Labels htmlFor="files" onChange={uploadFile}>
-//         <HiUpload />
-//         <Inputs type="file" id="files" multiple="multiple" />
-//       </Labels>
-//       {imgPreview.map((image, id) => {
-//         return (
-//           <CardGrid key={id}>
-//             <BiX
-//               type="button"
-//               onClick={() => {
-//                 handleDeleteImage(id);
-//               }}
-//             />
-
-//             <ImageList src={`${image}`} alt={`${image}-${id}`} />
-//           </CardGrid>
-//         );
-//       })}
-//     </CardGrid>
-//   </>
-// );
-// };
 
 export default Upload;
 
@@ -99,7 +102,7 @@ const Inputs = styled.input`
 `;
 
 const ImageList = styled.div`
-  width: 90px;
+  width: 150px;
   height: 100px;
   border: 1px solid rgba(0, 0, 0, 0.07);
   border-radius: 3px;

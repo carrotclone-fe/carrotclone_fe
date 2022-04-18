@@ -6,12 +6,9 @@ const regCheck = (check, sel) => {
     sel = sel.match(/^pw/i) ? 'pw' : sel
 
     const Checking = {
-        IdCheck: /^([a-zA-Z])[a-zA-Z0-9_.]{1,10}$/,
-        PwCheck: /^([a-zA-Z])[0-9a-zA-Z!@#$%^&*]{3,20}$/,
+        IdCheck: /^[가-힣a-zA-Z0-9-_.]{2,10}$/,
+        PwCheck: /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{6,20}$/,
     }
-
-    console.log(check.match(/^(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{3,20}$/))
-    console.log(Checking.PwCheck.test(check))
 
     switch (sel) {
         case 'id':  console.log('id')

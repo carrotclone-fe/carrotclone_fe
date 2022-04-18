@@ -29,29 +29,34 @@ const initialPost = {
 
 // 미들 웨어
 const getPostDB = () => {
-  return function (dispatch, getState, { history }) {};
-};
+  return function (dispatch, getState, { history }) {
+
+    apis.mainGet()
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err))
+  }
+}
 const getDetailDB = () => {
-  return function (dispatch, getState, { history }) {};
+  return function (dispatch, getState, { history }) { }
 };
 const addPostDB = () => {
-  return function (dispatch, getState, { history }) {};
+  return function (dispatch, getState, { history }) { }
 };
 const editPostDB = () => {
-  return function (dispatch, getState, { history }) {};
+  return function (dispatch, getState, { history }) { }
 };
 const deletePostDB = () => {
-  return function (dispatch, getState, { history }) {};
+  return function (dispatch, getState, { history }) { }
 };
 
 // 리덕스
 export default handleActions(
   {
-    [SET_POST]: (state, action) => produce(state, (draft) => {}),
-    [SET_DETAIL]: (state, action) => produce(state, (draft) => {}),
-    [ADD_POST]: (state, action) => produce(state, (draft) => {}),
-    [EDIT_POST]: (state, action) => produce(state, (draft) => {}),
-    [DELETE_POST]: (state, action) => produce(state, (draft) => {}),
+    [SET_POST]: (state, action) => produce(state, (draft) => { }),
+    [SET_DETAIL]: (state, action) => produce(state, (draft) => { }),
+    [ADD_POST]: (state, action) => produce(state, (draft) => { }),
+    [EDIT_POST]: (state, action) => produce(state, (draft) => { }),
+    [DELETE_POST]: (state, action) => produce(state, (draft) => { }),
   },
   initialState
 );

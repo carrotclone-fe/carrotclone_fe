@@ -15,7 +15,7 @@ export default function Login(props) {
     const login = () => {
         console.log(userId, userPw)
 
-        dispatch(UserActions.Log_inAXI('seong', '1234'))
+        dispatch(UserActions.Log_inDB(userId, userPw))
     }
 
     return (

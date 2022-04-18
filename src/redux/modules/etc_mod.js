@@ -19,23 +19,27 @@ const initialState = {
     like: false,
 }
 
-const status_AXI = (postId, username, status) => {
+const status_DB = (postid, status) => {
     return (dispatch, getState, { history }) => {
-        console.log(postId, username, status)
+        // console.log(postId, username, status)
 
-        // apis.like(postId, username, status).then((res) => console.log(res))
+        apis.stateEdit(postid, status)
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err.response.data))
 
-        dispatch(status({ postId, username, status }))
+        // dispatch(status({ postId, username, status }))
     }
 }
 
-const like_AXI = (postId, username) => {
+const like_DB = (postId, username) => {
     return (dispatch, getState, { history }) => {
         console.log(postId, username)
 
-        // apis.like(postId, username).then((res) => console.log(res))
+        apis.like(postId, username)
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err))
 
-        dispatch(like({ postId, username }))
+        // dispatch(like({ postId, username }))
     }
 }
 
@@ -52,9 +56,9 @@ export default handleActions({
 
 const actionsCreators = {
     status,
-    status_AXI,
+    status_DB,
     like,
-    like_AXI,
+    like_DB,
 }
 
 export { actionsCreators };
