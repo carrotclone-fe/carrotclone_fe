@@ -19,9 +19,11 @@ const Sign_upAXI = (username, password, passwordcheck) => {
     return function (dispatch, getState, { history }) {
         console.log(username, password, passwordcheck)
 
-        apis.signup(username, password, passwordcheck).then((res) => console.log(res))
+        // apis.signup(username, password, passwordcheck).then((res) => console.log(res))
 
         dispatch(sign_up({ username, password, passwordcheck }))
+
+        // history.push('/')
     }
 }
 
@@ -29,22 +31,26 @@ const Log_inAXI = (username, password) => {
     return function (dispatch, getState, { history }) {
         console.log(username, password)
 
-        apis.login(username, password).then((res) => console.log(res))
+        // apis.login(username, password).then((res) => console.log(res))
 
         dispatch(log_in({ username, password }))
+
+        // history.push('/')
     }
 }
 
-export default handleActions({
-    [SIGN_UP]: (state, action) => produce(state, (draft) => {
-        console.log(state, action)
+export default handleActions(
+    {
+        [SIGN_UP]: (state, action) => produce(state, (draft) => {
+            console.log(state, action)
 
-    }),
-    [LOG_IN]: (state, action) => produce(state, (draft) => {
-        console.log(state, action)
+        }),
+        [LOG_IN]: (state, action) => produce(state, (draft) => {
+            console.log(state, action)
 
-    }),
-}, initialState)
+        }),
+    }, initialState
+)
 
 const actionsCreators = {
     sign_up,

@@ -23,7 +23,7 @@ const status_AXI = (postId, username, status) => {
     return (dispatch, getState, { history }) => {
         console.log(postId, username, status)
 
-        apis.like(postId, username, status).then((res) => console.log(res))
+        // apis.like(postId, username, status).then((res) => console.log(res))
 
         dispatch(status({ postId, username, status }))
     }
@@ -33,7 +33,7 @@ const like_AXI = (postId, username) => {
     return (dispatch, getState, { history }) => {
         console.log(postId, username)
 
-        apis.like(postId, username).then((res) => console.log(res))
+        // apis.like(postId, username).then((res) => console.log(res))
 
         dispatch(like({ postId, username }))
     }
