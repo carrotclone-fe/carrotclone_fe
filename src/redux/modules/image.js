@@ -9,7 +9,7 @@ const EDIT_PRE = "EDIT_PRE";
 
 // 액션 크리에이터
 
-const setPre = createAction(SET_PRE, (pre, data) => ({ pre, data }));
+const setPre = createAction(SET_PRE, (data) => ({ data }));
 const initPre = createAction(INIT_PRE, () => ({}));
 const delPre = createAction(DEL_PRE, (index) => ({ index }));
 const editPre = createAction(EDIT_PRE, (pre) => ({ pre }));
@@ -21,7 +21,11 @@ const initialState = {
 
 export default handleActions(
   {
-    [SET_PRE]: (state, action) => produce(state, (draft) => {}),
+    [SET_PRE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.files = action.payload.data;
+        console.log(draft.files);
+      }),
     [INIT_PRE]: (state, action) => produce(state, (draft) => {}),
     [DEL_PRE]: (state, action) => produce(state, (draft) => {}),
     [EDIT_PRE]: (state, action) => produce(state, (draft) => {}),

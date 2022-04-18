@@ -30,33 +30,89 @@ const initialPost = {
 // 미들 웨어
 const getPostDB = () => {
   return function (dispatch, getState, { history }) {
+    apis
+      .mainGet()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
 
-    apis.mainGet()
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err))
-  }
-}
 const getDetailDB = () => {
-  return function (dispatch, getState, { history }) { }
+  return function (dispatch, getState, { history }) {};
 };
-const addPostDB = () => {
-  return function (dispatch, getState, { history }) { }
+
+const addPostDB = (title, imageList, category, price, content) => {
+  return function (dispatch, getState, { history }) {
+    const fromData = new FormData();
+
+    // fromData.append("title", title);
+    // fromData.append("category", category);
+    // fromData.append("price", price);
+    // fromData.append("content", content);
+    fromData.append(
+      "requestDto",
+      new Blob(
+        [
+          JSON.stringify({
+            title: title,
+            category: category,
+            price: price,
+            content: content,
+          }),
+        ],
+        {
+          type: "application/json",
+        }
+      )
+    );
+
+    let imageArr = imageList.map((e, idx) => {
+      return {
+        imageid: idx,
+        imageurl: e,
+      };
+    });
+    console.log(imageArr);
+
+    imageArr.map((e, idx) => {
+      return fromData.append("list", e);
+    });
+
+    fromData.forEach((e) => {
+      console.log(e);
+    });
+
+    apis
+      .postWrite(fromData)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 };
+
 const editPostDB = () => {
-  return function (dispatch, getState, { history }) { }
+  return function (dispatch, getState, { history }) {};
 };
+
 const deletePostDB = () => {
-  return function (dispatch, getState, { history }) { }
+  return function (dispatch, getState, { history }) {};
 };
 
 // 리덕스
 export default handleActions(
   {
-    [SET_POST]: (state, action) => produce(state, (draft) => { }),
-    [SET_DETAIL]: (state, action) => produce(state, (draft) => { }),
-    [ADD_POST]: (state, action) => produce(state, (draft) => { }),
-    [EDIT_POST]: (state, action) => produce(state, (draft) => { }),
-    [DELETE_POST]: (state, action) => produce(state, (draft) => { }),
+    [SET_POST]: (state, action) => produce(state, (draft) => {}),
+    [SET_DETAIL]: (state, action) => produce(state, (draft) => {}),
+    [ADD_POST]: (state, action) => produce(state, (draft) => {}),
+    [EDIT_POST]: (state, action) => produce(state, (draft) => {}),
+    [DELETE_POST]: (state, action) => produce(state, (draft) => {}),
   },
   initialState
 );

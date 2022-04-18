@@ -7,16 +7,16 @@ import image from "./modules/image";
 import User from "./modules/user";
 import Etc from "./modules/etc_mod";
 import Post from "./modules/Post";
-import Image from './modules/image'
+import Image from "./modules/image";
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
-    User,
-    Etc,
-    Post,
-    Image,
-    router: connectRouter(history),
+  User,
+  Etc,
+  Post,
+  Image,
+  router: connectRouter(history),
 });
 
 const middlewares = [thunk.withExtraArgument({ history: history })];
@@ -26,17 +26,17 @@ const env = process.env.NODE_ENV;
 
 // 개발환경에서는 로거라는 걸 하나만 더 써볼게요.
 if (env === "development") {
-    const { logger } = require("redux-logger");
-    middlewares.push(logger);
+  const { logger } = require("redux-logger");
+  middlewares.push(logger);
 }
 
 //리덕스 devTools 설정
 const composeEnhancers =
-    typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-        ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-            // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
-        })
-        : compose;
+  typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+        // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+      })
+    : compose;
 
 //미들웨어 묶기
 const enhancer = composeEnhancers(applyMiddleware(...middlewares));
