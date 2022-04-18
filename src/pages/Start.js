@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Image, Text, Button } from "../elements/index";
 import { history } from "../redux/configStore";
-
+import Upload from "../shared/Upload";
 
 export default function Start(props) {
 
