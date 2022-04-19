@@ -8,7 +8,7 @@ import { actionCreators as postActions } from "../redux/modules/Post";
 
 export default function Write(props) {
   const dispatch = useDispatch();
-  const imageList = useSelector((state) => state.image.files);
+  const imageList = useSelector((state) => state.Image.files);
   const [title, setTitle] = useState();
   const [category, setCategory] = useState();
   const [price, setPrice] = useState();
@@ -17,8 +17,10 @@ export default function Write(props) {
   Permit();
 
   const Upload_Post = () => {
-    history.push("/main");
-    dispatch(postActions.addPostDB(title, imageList, category, price, content));
+    // history.push("/main");
+    dispatch(
+      postActions.postPostTest(title, imageList, category, price, content)
+    );
   };
 
   return (
@@ -64,12 +66,19 @@ export default function Write(props) {
         <hr></hr>
         <Grid padding="16px">
           <select
-            style={{ width: "30%", fontSize: "2.5vw", textAlign: "center" }}
+            style={{
+              width: "100%",
+              fontSize: "20px",
+              textAlign: "center",
+              backgroundColor: "gray",
+              color: "white",
+              height: "50px",
+            }}
             onChange={(e) => {
               setCategory(e.target.value);
             }}
           >
-            <option value=""></option>
+            <option value="">카테고리를 골라주세요!</option>
             <option value="디지털기기">디지털기기</option>
             <option value="의류">의류</option>
             <option value="생활가전">생활가전</option>
@@ -83,6 +92,7 @@ export default function Write(props) {
             placeholder="가격 (선택사항)"
             size="30px"
             value={price}
+            width="100%"
             _onChange={(e) => {
               setPrice(e.target.value);
             }}

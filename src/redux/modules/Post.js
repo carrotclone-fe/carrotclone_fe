@@ -49,10 +49,6 @@ const addPostDB = (title, imageList, category, price, content) => {
   return function (dispatch, getState, { history }) {
     const fromData = new FormData();
 
-    // fromData.append("title", title);
-    // fromData.append("category", category);
-    // fromData.append("price", price);
-    // fromData.append("content", content);
     fromData.append(
       "requestDto",
       new Blob(
@@ -108,7 +104,11 @@ const deletePostDB = () => {
 // 리덕스
 export default handleActions(
   {
-    [SET_POST]: (state, action) => produce(state, (draft) => {}),
+    [SET_POST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list = action.payload.post_list;
+        console.log(draft.list);
+      }),
     [SET_DETAIL]: (state, action) => produce(state, (draft) => {}),
     [ADD_POST]: (state, action) => produce(state, (draft) => {}),
     [EDIT_POST]: (state, action) => produce(state, (draft) => {}),

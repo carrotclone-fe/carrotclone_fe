@@ -36,13 +36,9 @@ export const apis = {
   mainGet: () => instance.get("/api/main"),
 
   //POST작성 POST
-  postWrite: (title, imagelist, category, price, content) =>
+  postWrite: (fromData) =>
     formDatas.post("/api/post", {
-      title: title,
-      imagelist: imagelist,
-      category: category,
-      price: price,
-      content: content,
+      fromData,
     }),
 
   // POST수정 PUT

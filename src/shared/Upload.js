@@ -37,6 +37,7 @@ const Upload = () => {
   };
 
   const handleDeleteImage = (id) => {
+    dispatch(imgActions.deletePre(id));
     setImgPreview(imgPreview.filter((b, idx) => idx !== id));
   };
 

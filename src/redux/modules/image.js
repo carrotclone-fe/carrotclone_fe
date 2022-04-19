@@ -3,16 +3,12 @@ import produce, { Immer } from "immer";
 
 // 액션
 const SET_PRE = "SET_PRE";
-const INIT_PRE = "INIT_PRE";
-const DEL_PRE = "DEL_PRE";
-const EDIT_PRE = "EDIT_PRE";
+const DELETE_PRE = "DELETE_PRE";
 
 // 액션 크리에이터
 
 const setPre = createAction(SET_PRE, (data) => ({ data }));
-const initPre = createAction(INIT_PRE, () => ({}));
-const delPre = createAction(DEL_PRE, (index) => ({ index }));
-const editPre = createAction(EDIT_PRE, (pre) => ({ pre }));
+const deletePre = createAction(DELETE_PRE, (imageId) => ({ imageId }));
 
 const initialState = {
   preView: [],
@@ -26,18 +22,21 @@ export default handleActions(
         draft.files = action.payload.data;
         console.log(draft.files);
       }),
-    [INIT_PRE]: (state, action) => produce(state, (draft) => {}),
-    [DEL_PRE]: (state, action) => produce(state, (draft) => {}),
-    [EDIT_PRE]: (state, action) => produce(state, (draft) => {}),
+    [DELETE_PRE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.files = draft.files.filter(
+          (i, idx) => idx !== action.payload.imageId
+        );
+        console.log(state.files);
+        console.log(action.payload);
+      }),
   },
   initialState
 );
 
 const imgActions = {
   setPre,
-  initPre,
-  delPre,
-  editPre,
+  deletePre,
 };
 
 export { imgActions };
