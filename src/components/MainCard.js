@@ -9,6 +9,7 @@ import ReactModal from "react-modal";
 
 const MainCard = (props) => {
   const { page } = props;
+  console.log(props.postid);
 
   const [ModalState, setModalState] = React.useState(false);
   const [likeState, setLikeState] = React.useState(false);
@@ -130,7 +131,6 @@ const MainCard = (props) => {
 MainCard.defaultProps = {
   page: null,
   userInfo: {
-    userid: 0,
     nickname: "",
     rate: 36.5,
     address: "",

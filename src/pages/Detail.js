@@ -1,18 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Button, Grid, Image, Text } from "../elements/index";
 import { IoHeartOutline, IoHeart } from "react-icons/io5";
 
 import { history } from "../redux/configStore";
+import SlideImage from "../components/SlideImage";
 
 import { actionsCreators as EtcActions } from "../redux/modules/etc_mod";
+import { actionCreators as poseActions } from "../redux/modules/Post";
 
 export default function Detail(props) {
     const param = useParams()
     const dispatch = useDispatch()
     const username = useSelector((state)=>state.User.user)
     const [likeState, setLikeState] = useState()
+    const detailList = useSelector((state) => state.Post.detailList);
+    console.log(detailList);
 
     const statusFix = (e) => {
         if(!e.target.value)
@@ -24,6 +28,10 @@ export default function Detail(props) {
     const likeToggle = (e) => {
         dispatch(EtcActions.like_DB(param.postid, username))
     }
+    
+  useEffect(() => {
+    dispatch(poseActions.getDetailDB(param.postid));
+  }, []);
 
   return (
     <React.Fragment>
@@ -42,7 +50,7 @@ export default function Detail(props) {
               fs="20px"
               width="20%"
               margin="0 10px 0 0"
-              _onClick={() => history.push("/")}
+              _onClick={() => history.push("/main")}
             >
               Home
             </Button>
@@ -55,7 +63,7 @@ export default function Detail(props) {
         </Grid>
         <Grid padding="0 20px">
           <Grid width="15%" min_width="150px" margin="auto">
-            <Image></Image>
+            <SlideImage />
           </Grid>
           <Grid flex_space width="60%" margin="auto" bg="grey" padding="10px">
             <Grid flex_space width="100%">
@@ -67,7 +75,7 @@ export default function Detail(props) {
                 ></Image>
               </Grid>
               <Grid margin="0 0 0 20%">
-                <Text size="2vw">아이디</Text>
+                <Text size="2vw">{detailList.username}</Text>
                 <Text size="2vw">항해동</Text>
               </Grid>
             </Grid>
@@ -117,8 +125,8 @@ export default function Detail(props) {
                       textAlign: "left",
                     }}
                   >
-                    <Text size="2vw">제목</Text>
-                    <Text size="2vw">카테고리</Text>
+                    <Text size="2vw">{detailList.title}</Text>
+                    <Text size="2vw">{detailList.categoryName}</Text>
                   </div>
                 </Grid>
                 <div
@@ -129,10 +137,7 @@ export default function Detail(props) {
                     margin: "0 10% 5% auto",
                   }}
                 >
-                  <Text size="2vw">
-                    게시글 내용 asdofj oaj foijsfoja asjdfo jaowej f;oaiwej
-                    f;oiawj efoiawj e;foiajw eflaiwje fliuj
-                  </Text>
+                  <Text size="2vw">{detailList.content}</Text>
                 </div>
               </Grid>
 
@@ -143,7 +148,7 @@ export default function Detail(props) {
                   </Button>
                 </Grid>
                 <Grid width="20%">
-                  <Text size="2vw">4,234,553</Text>
+                  <Text size="2vw">{detailList.price}원</Text>
                   <Text underLine size="2vw">
                     가격제안하기
                   </Text>

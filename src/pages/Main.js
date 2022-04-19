@@ -16,7 +16,6 @@ import { deleteCookie } from "../shared/Cookie";
 import { history } from "../redux/configStore";
 const Main = (props) => {
   const postList = useSelector((state) => state.Post.list);
-  console.log(postList);
   const dispatch = useDispatch();
 
   const logOut = () => {
@@ -58,8 +57,19 @@ const Main = (props) => {
       <CardGrid>
         {postList
           ? postList.map((p, idx) => {
-            return <Button key={idx} _onClick={() => { history.push(`/detail/${p.postid}`) }} hoverbg='null' bg='white'><MainCard {...p} list={props} /></Button>;
-          })
+              return (
+                <Button
+                  _onClick={() => {
+                    history.push(`/detail/${p.postid}`);
+                  }}
+                  key={idx}
+                  hoverbg="null"
+                  bg="white"
+                >
+                  <MainCard key={idx} {...p} list={props} />
+                </Button>
+              );
+            })
           : null}
       </CardGrid>
       <Btn
