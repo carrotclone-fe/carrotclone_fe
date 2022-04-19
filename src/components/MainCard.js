@@ -8,7 +8,8 @@ import "../shared/App.css";
 import ReactModal from "react-modal";
 
 const MainCard = (props) => {
-  const { page, user, postId, title, price, likeCnt, state } = props;
+  console.log("메인카드", props);
+  const { page } = props;
 
   const [ModalState, setModalState] = React.useState(false);
   const [likeState, setLikeState] = React.useState(false);
@@ -38,9 +39,9 @@ const MainCard = (props) => {
           width="60%"
         >
           <TextLabel F_size="17px" F_weight="bold">
-            제목
+            {props.title}
           </TextLabel>
-          <TextLabel F_color="#4D5159">항해동</TextLabel>
+          <TextLabel F_color="#4D5159">항해동 {props.createdAt}</TextLabel>
           <CardGrid is_flex gap="10px">
             {props.state && (
               <CardGrid
@@ -50,11 +51,11 @@ const MainCard = (props) => {
                 B_radius="3px"
               >
                 <TextLabel F_weight="bold" F_color="white" F_size="12px">
-                  거래완료
+                  {props.status}
                 </TextLabel>
               </CardGrid>
             )}
-            <TextLabel F_weight="bold">1500원</TextLabel>
+            <TextLabel F_weight="bold">{props.price}</TextLabel>
           </CardGrid>
         </CardGrid>
         <CardGrid
@@ -65,7 +66,7 @@ const MainCard = (props) => {
           gap="5px"
         >
           <IoHeartOutline />
-          <TextLabel>3</TextLabel>
+          <TextLabel>{props.loveCnt}</TextLabel>
         </CardGrid>
 
         <CardGrid position="absolute" top="15px" right="10px">

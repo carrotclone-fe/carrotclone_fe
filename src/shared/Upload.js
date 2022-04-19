@@ -4,12 +4,12 @@ import { BiX } from "react-icons/bi";
 import styled from "styled-components";
 import { HiUpload } from "react-icons/hi";
 import { useDispatch } from "react-redux";
+import { imgActions } from "../redux/modules/image";
 
 const Upload = () => {
+  const dispatch = useDispatch();
   const [imgPreview, setImgPreview] = useState([]);
   const [postFiles, setPostFiles] = useState([]);
-
-  const dispatch = useDispatch()
 
   const uploadFile = (e) => {
     const imageList = e.target.files;
@@ -24,9 +24,20 @@ const Upload = () => {
       imageUrlList = imageUrlList.slice(0, 10);
     }
     setImgPreview(imageUrlList);
+
+    let imgList = [];
+
+    for (const key in imageList) {
+      if (Object.hasOwnProperty.call(imageList, key)) {
+        imgList.push(imageList[key]);
+      }
+    }
+
+    dispatch(imgActions.setPre(imgList));
   };
 
   const handleDeleteImage = (id) => {
+    dispatch(imgActions.deletePre(id));
     setImgPreview(imgPreview.filter((b, idx) => idx !== id));
   };
 
@@ -67,7 +78,7 @@ const Upload = () => {
         </Labels>
         {imgPreview.map((image, id) => {
           return (
-            <CardGrid key={id} margin='0 50px 50px 0'>
+            <CardGrid key={id} margin="0 50px 50px 0">
               <BiX
                 type="button"
                 onClick={() => {

@@ -9,18 +9,25 @@ import { AiFillHeart } from "react-icons/ai";
 import { IoHeartOutline, IoHeart } from "react-icons/io5";
 import MainCard from "../components/MainCard";
 import { BsPlusLg } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as postActions } from "../redux/modules/Post";
+import { useEffect } from "react";
 import Permit from "../shared/Permit";
 import { deleteCookie } from "../shared/Cookie";
 import { history } from "../redux/configStore";
+const Main = (props) => {
+  const postList = useSelector((state) => state.Post.list);
+  const dispatch = useDispatch();
 
-const Main = () => {
-
-  Permit()
+  Permit();
 
   const logOut = () => {
-    deleteCookie('token')
-    history.replace('/')
-  }
+    deleteCookie("token");
+    history.replace("/");
+  };
+  useEffect(() => {
+    dispatch(postActions.getPostTest());
+  }, []);
 
   return (
     <>
@@ -50,14 +57,24 @@ const Main = () => {
         <hr />
       </CardGrid>
       <CardGrid>
-        <MainCard />
-        <MainCard />
-        <MainCard />
-        <MainCard />
-        <MainCard />
+        {postList
+          ? postList.map((p, idx) => {
+              return <MainCard key={idx} {...p} list={props} />;
+            })
+          : null}
       </CardGrid>
-      <Btn>
-        <BsPlusLg />
+      <Btn
+        type="button"
+        onClick={() => {
+          history.push("/write");
+        }}
+      >
+        <BsPlusLg
+          type="button"
+          onClick={() => {
+            history.push("/write");
+          }}
+        />
       </Btn>
     </>
   );
