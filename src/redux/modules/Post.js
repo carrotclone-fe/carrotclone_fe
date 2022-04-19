@@ -1,6 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
 import { apis } from "../../shared/apis";
+import axios from "axios";
 
 // 액션
 const SET_POST = "SET_POST";
@@ -33,6 +34,7 @@ const getPostDB = () => {
     apis
       .mainGet()
       .then((res) => {
+        dispatch(setPost(res.data));
         console.log(res);
       })
       .catch((err) => {
@@ -42,22 +44,32 @@ const getPostDB = () => {
 };
 
 const getDetailDB = () => {
-  return function (dispatch, getState, { history }) {};
+  return function (dispatch, getState, { history }) {
+    apis
+      .detailPost()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 };
 
-const addPostDB = (title, imageList, category, price, content) => {
+const addPostDB = (title, imageList, category, price, content, username) => {
   return function (dispatch, getState, { history }) {
     const fromData = new FormData();
 
     fromData.append(
-      "requestDto",
+      "com",
       new Blob(
         [
           JSON.stringify({
             title: title,
-            category: category,
-            price: price,
+            categoryid: parseInt(category),
+            price: parseInt(price),
             content: content,
+            username: username,
           }),
         ],
         {
@@ -66,22 +78,13 @@ const addPostDB = (title, imageList, category, price, content) => {
       )
     );
 
-    let imageArr = imageList.map((e, idx) => {
-      return {
-        imageid: idx,
-        imageurl: e,
-      };
-    });
-    console.log(imageArr);
-
-    imageArr.map((e, idx) => {
-      return fromData.append("list", e);
+    imageList.map((e, idx) => {
+      return fromData.append("files", e);
     });
 
-    fromData.forEach((e) => {
-      console.log(e);
-    });
-
+    // fromData.forEach((e) => {
+    //   console.log(e);
+    // });
     apis
       .postWrite(fromData)
       .then((res) => {

@@ -11,8 +11,11 @@ import Signup from "../pages/Signup";
 import Start from "../pages/Start";
 import Write from "../pages/Write";
 import React from "react";
+import Permit from "./Permit";
 
 function App() {
+  Permit();
+
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
