@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid, Image, Text, CardGrid } from "../elements";
+import { Grid, Image, Text, CardGrid, Button } from "../elements";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { MdOutlineMenu } from "react-icons/md";
 import { HiOutlineSearch, HiOutlineBell } from "react-icons/hi";
@@ -17,7 +17,6 @@ import { deleteCookie } from "../shared/Cookie";
 import { history } from "../redux/configStore";
 const Main = (props) => {
   const postList = useSelector((state) => state.Post.list);
-  console.log(postList);
   const dispatch = useDispatch();
 
   const logOut = () => {
@@ -59,7 +58,18 @@ const Main = (props) => {
       <CardGrid>
         {postList
           ? postList.map((p, idx) => {
-              return <MainCard key={idx} {...p} list={props} />;
+              return (
+                <Button
+                  _onClick={() => {
+                    history.push(`/detail/${p.postid}`);
+                  }}
+                  key={idx}
+                  hoverbg="null"
+                  bg="white"
+                >
+                  <MainCard key={idx} {...p} list={props} />
+                </Button>
+              );
             })
           : null}
       </CardGrid>
