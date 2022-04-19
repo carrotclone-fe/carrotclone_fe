@@ -9,8 +9,19 @@ import { AiFillHeart } from "react-icons/ai";
 import { IoHeartOutline, IoHeart } from "react-icons/io5";
 import MainCard from "../components/MainCard";
 import { BsPlusLg } from "react-icons/bs";
+import Permit from "../shared/Permit";
+import { deleteCookie } from "../shared/Cookie";
+import { history } from "../redux/configStore";
 
 const Main = () => {
+
+  Permit()
+
+  const logOut = () => {
+    deleteCookie('token')
+    history.replace('/')
+  }
+
   return (
     <>
       <CardGrid height="70px">
@@ -29,7 +40,7 @@ const Main = () => {
                   <MdOutlineMenu />
                 </button>
 
-                <button>
+                <button onClick={logOut}>
                   <FiLogOut />
                 </button>
               </Grid>

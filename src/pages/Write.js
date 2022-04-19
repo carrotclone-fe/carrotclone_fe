@@ -1,14 +1,13 @@
 import React from "react";
 import { Button, Grid, Image, Input, Text } from "../elements";
 import { history } from "../redux/configStore";
+import Permit from "../shared/Permit";
 import Upload from "../shared/Upload";
 
 
 export default function Write(props) {
 
-  const Upload_Post = () => {
-    history.push('/main')
-  }
+  Permit()
 
   return (
     <React.Fragment>
@@ -17,7 +16,7 @@ export default function Write(props) {
           <Button width='100px' _onClick={() => { history.goBack() }}>back</Button>
           <Grid flex_col margin='5px 0 0 10px'><Text size='20px'>중고거래 글쓰기</Text></Grid>
         </div>
-        <Button width='100px' _onClick={Upload_Post}>완료</Button>
+        <Button width='100px'>완료</Button>
       </Grid>
       <hr></hr>
       <Grid flex='1'>

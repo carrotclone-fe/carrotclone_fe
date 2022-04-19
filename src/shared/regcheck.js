@@ -2,8 +2,8 @@
 
 const regCheck = (check, sel) => {
 
-    sel = sel.match(/^id/i) ? 'id' : sel
-    sel = sel.match(/^pw/i) ? 'pw' : sel
+    sel = sel.match(/^i/i) ? 'id' : sel
+    sel = sel.match(/^p/i) ? 'pw' : sel
 
     const Checking = {
         IdCheck: /^[가-힣a-zA-Z0-9-_.]{2,10}$/,
@@ -11,10 +11,8 @@ const regCheck = (check, sel) => {
     }
 
     switch (sel) {
-        case 'id':  console.log('id')
-            return Checking.IdCheck.test(check)
-        case 'pw':  console.log('pw')
-            return Checking.PwCheck.test(check)
+        case 'id': return Checking.IdCheck.test(check)
+        case 'pw': return Checking.PwCheck.test(check)
         default: return false;
     }
 }

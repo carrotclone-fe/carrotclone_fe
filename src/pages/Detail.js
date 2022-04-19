@@ -2,8 +2,11 @@ import React from "react";
 import { Button, Grid, Image, Text } from "../elements/index";
 
 import { history } from "../redux/configStore";
+import Permit from "../shared/Permit";
 
 export default function Detail(props) {
+
+    Permit()
 
     return (
         <React.Fragment>
