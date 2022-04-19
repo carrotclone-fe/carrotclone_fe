@@ -26,9 +26,9 @@ export default function SlideImage() {
         modules={[Pagination]}
         className="mySwiper"
       >
-        {imageList.map((image, idx) => {
+        {imageList?.map((image, idx) => {
           return (
-            <SwiperSlide>
+            <SwiperSlide key={idx}>
               <Image src={`${image}`} />
             </SwiperSlide>
           );
