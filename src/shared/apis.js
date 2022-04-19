@@ -66,7 +66,7 @@ export const apis = {
   // 거래 상태 수정 POST
   stateEdit: (postid, status) =>
     instance.put(`/api/status/${postid}`, {
-      status: status,
+      status,
     }),
 
   // 좋아요 GET

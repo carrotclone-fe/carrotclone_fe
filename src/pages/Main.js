@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid, Image, Text, CardGrid } from "../elements";
+import { Grid, Image, Text, CardGrid, Button } from "../elements";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { MdOutlineMenu } from "react-icons/md";
 import { HiOutlineSearch, HiOutlineBell } from "react-icons/hi";
@@ -12,7 +12,6 @@ import { BsPlusLg } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/Post";
 import { useEffect } from "react";
-import Permit from "../shared/Permit";
 import { deleteCookie } from "../shared/Cookie";
 import { history } from "../redux/configStore";
 const Main = (props) => {
@@ -59,8 +58,8 @@ const Main = (props) => {
       <CardGrid>
         {postList
           ? postList.map((p, idx) => {
-              return <MainCard key={idx} {...p} list={props} />;
-            })
+            return <Button key={idx} _onClick={() => { history.push(`/detail/${p.postid}`) }} hoverbg='null' bg='white'><MainCard {...p} list={props} /></Button>;
+          })
           : null}
       </CardGrid>
       <Btn

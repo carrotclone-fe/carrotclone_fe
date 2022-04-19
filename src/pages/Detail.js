@@ -1,10 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { Button, Grid, Image, Text } from "../elements/index";
+import { IoHeartOutline, IoHeart } from "react-icons/io5";
 
 import { history } from "../redux/configStore";
-import Permit from "../shared/Permit";
+
+import { actionsCreators as EtcActions } from "../redux/modules/etc_mod";
 
 export default function Detail(props) {
+    const param = useParams()
+    const dispatch = useDispatch()
+    const username = useSelector((state)=>state.User.user)
+    const [likeState, setLikeState] = useState()
+
+    const statusFix = (e) => {
+        if(!e.target.value)
+            return
+
+        dispatch(EtcActions.status_DB(parseInt(param.postid), e.target.value))
+    }
+
+    const likeToggle = (e) => {
+        dispatch(EtcActions.like_DB(param.postid, username))
+    }
+
   return (
     <React.Fragment>
       <Grid>
@@ -77,12 +97,12 @@ export default function Detail(props) {
                     fontSize: "2.5vw",
                     textAlign: "center",
                   }}
-                  onChange={(e) => {}}
+                  onChange={statusFix}
                 >
                   <option value=""></option>
-                  <option value="거래완료">거래완료</option>
-                  <option value="거래 중">거래 중</option>
-                  <option value="예약 중">예약 중</option>
+                  <option value='판매중'>판매 중</option>
+                  <option value='예약중'>예약 중</option>
+                  <option value='거래완료'>거래완료</option>
                 </select>
               </Grid>
             </Grid>
@@ -118,12 +138,8 @@ export default function Detail(props) {
 
               <Grid flex_space width="90%" margin="auto">
                 <Grid width="10%">
-                  <Button bg="white" hoverbg="white">
-                    <Image
-                      src={
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKjs2YQP7JH7h3cOW-ueQuCOHQMogKmvX3GQ&usqp=CAU"
-                      }
-                    ></Image>
+                  <Button bg="white" hoverbg="white" _onClick={likeToggle}>
+                    {likeState ? <IoHeart /> : <IoHeartOutline />}
                   </Button>
                 </Grid>
                 <Grid width="20%">

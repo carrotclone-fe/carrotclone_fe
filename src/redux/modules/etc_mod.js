@@ -21,13 +21,16 @@ const initialState = {
 
 const status_DB = (postid, status) => {
     return (dispatch, getState, { history }) => {
-        // console.log(postId, username, status)
+        console.log(postid, status)
 
         apis.stateEdit(postid, status)
-            .then((res) => console.log(res))
-            .catch((err) => console.log(err.response.data))
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((err) => {
+                console.log(err.response.data)
+            })
 
-        // dispatch(status({ postId, username, status }))
     }
 }
 
@@ -36,8 +39,13 @@ const like_DB = (postId, username) => {
         console.log(postId, username)
 
         apis.like(postId, username)
-            .then((res) => console.log(res))
-            .catch((err) => console.log(err))
+            .then((res) => {
+                console.log(res)
+                dispatch(like({ postId, username }))
+            })
+            .catch((err) => {
+                console.log(err)
+            })
 
         // dispatch(like({ postId, username }))
     }
