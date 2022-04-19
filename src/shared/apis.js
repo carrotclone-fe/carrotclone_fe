@@ -2,21 +2,30 @@ import axios from "axios";
 
 export const instance = axios.create({
   baseURL: "http://13.125.220.132",
-  // headers:
+  headers: {
+    "content-type": "application/json;charset=UTF-8",
+  },
 });
 
 // 헤더에 토큰 보내기
 instance.interceptors.request.use(function (config) {
   const accessToken = document.cookie.split("=")[1];
-  config.headers.common["Authorization"] = `Bearer ${accessToken}`;
+  config.headers.common["Authorization"] = `${accessToken}`;
   return config;
 });
 
 export const formDatas = axios.create({
-  baseURL: "http://52.79.226.206/",
+  baseURL: "http://13.125.220.132",
   headers: {
-    "content-type": "multipart/form-data",
+    // "content-type": "multipart/form-data",
   },
+});
+
+formDatas.interceptors.request.use(function (config) {
+  const accessToken = document.cookie.split("=")[1];
+  config.headers.common["Authorization"] = `${accessToken}`;
+  console.log(config);
+  return config;
 });
 
 export const apis = {
@@ -36,10 +45,7 @@ export const apis = {
   mainGet: () => instance.get("/api/main"),
 
   //POST작성 POST
-  postWrite: (fromData) =>
-    formDatas.post("/api/post", {
-      fromData,
-    }),
+  postWrite: (fromData) => formDatas.post("/api/post", fromData),
 
   // POST수정 PUT
   postEdit: (title, imagelist, category, price, content, postid) =>

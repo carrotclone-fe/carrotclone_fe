@@ -17,16 +17,16 @@ import { deleteCookie } from "../shared/Cookie";
 import { history } from "../redux/configStore";
 const Main = (props) => {
   const postList = useSelector((state) => state.Post.list);
+  console.log(postList);
   const dispatch = useDispatch();
-
-  Permit();
 
   const logOut = () => {
     deleteCookie("token");
     history.replace("/");
   };
+
   useEffect(() => {
-    dispatch(postActions.getPostTest());
+    dispatch(postActions.getPostDB());
   }, []);
 
   return (

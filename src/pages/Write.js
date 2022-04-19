@@ -2,24 +2,31 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Grid, Image, Input, Text } from "../elements";
 import { history } from "../redux/configStore";
-import Permit from "../shared/Permit";
 import Upload from "../shared/Upload";
 import { actionCreators as postActions } from "../redux/modules/Post";
 
 export default function Write(props) {
   const dispatch = useDispatch();
+
   const imageList = useSelector((state) => state.Image.files);
   const [title, setTitle] = useState();
-  const [category, setCategory] = useState();
+  const [categoryid, setCategory] = useState();
   const [price, setPrice] = useState();
   const [content, setContent] = useState();
 
-  Permit();
+  const username = useSelector((state) => state.User.user);
 
   const Upload_Post = () => {
     // history.push("/main");
     dispatch(
-      postActions.postPostTest(title, imageList, category, price, content)
+      postActions.addPostDB(
+        title,
+        imageList,
+        categoryid,
+        price,
+        content,
+        username
+      )
     );
   };
 
@@ -79,9 +86,9 @@ export default function Write(props) {
             }}
           >
             <option value="">카테고리를 골라주세요!</option>
-            <option value="디지털기기">디지털기기</option>
-            <option value="의류">의류</option>
-            <option value="생활가전">생활가전</option>
+            <option value="1">디지털기기</option>
+            <option value="2">의류</option>
+            <option value="3">생활가전</option>
           </select>
         </Grid>
         <hr></hr>

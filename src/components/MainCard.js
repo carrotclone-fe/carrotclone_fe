@@ -8,7 +8,6 @@ import "../shared/App.css";
 import ReactModal from "react-modal";
 
 const MainCard = (props) => {
-  console.log("메인카드", props);
   const { page } = props;
 
   const [ModalState, setModalState] = React.useState(false);
@@ -25,11 +24,7 @@ const MainCard = (props) => {
         position="relative"
       >
         <CardGrid width="20%">
-          <AspectInner
-            src={
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgs9A3wIEYQdGA7NgDo0SJPsf_tLdcOZ63_g&usqp=CAU"
-            }
-          />
+          <AspectInner src={props.image} />
         </CardGrid>
         <CardGrid
           is_flex
