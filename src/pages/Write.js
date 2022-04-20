@@ -12,7 +12,6 @@ import EditUpload from "../shared/EditImage";
 export default function Write(props) {
   const dispatch = useDispatch();
   const detailList = useSelector((state) => state.Post.detailList);
-  console.log(detailList);
 
   const param = useParams();
 
@@ -52,7 +51,16 @@ export default function Write(props) {
   }
 
   const EditPost = () => {
-    dispatch(postActions.editPostDB());
+    dispatch(
+      postActions.editPostDB(
+        title,
+        imageList,
+        categoryid,
+        price,
+        content,
+        username
+      )
+    );
   };
 
   return (

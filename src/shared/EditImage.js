@@ -9,17 +9,7 @@ import { imgActions } from "../redux/modules/image";
 const EditUpload = (props) => {
   let EditImage = props.image;
   const dispatch = useDispatch();
-  // let dd = EditImage?.map((a) => {
-  //   return a
-  // });
-  // console.log(dd);
-
   const [imgPreview, setImgPreview] = useState([]);
-  console.log(EditImage);
-
-  // useEffect(() => {
-  //   dispatch(imgActions.editPre(...EditImage));
-  // });
 
   const uploadFile = (e) => {
     const imageList = e.target.files;
