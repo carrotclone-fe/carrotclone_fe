@@ -176,7 +176,7 @@ export default function Detail(props) {
           <button
             type={"button"}
             className={"like-btn"}
-            // onClick={() => handleClickLikeBtn(detail_data.postId)}
+            onClick={likeToggle}
           >
             {detailList.love ? <AiFillHeart /> : <IoHeartOutline />}
           </button>
