@@ -26,6 +26,8 @@ const MainCard = (props) => {
     history.push(`/write/${props.postid}`);
   };
 
+  console.log(props)
+
   return (
     <React.Fragment>
       <CardGrid
@@ -59,7 +61,7 @@ const MainCard = (props) => {
           </TextLabel>
           <TextLabel F_color="#4D5159">항해동 {props.createdAt}</TextLabel>
           <CardGrid is_flex gap="10px">
-            {props.state && (
+            {props.status && (
               <CardGrid
                 width="auto"
                 BG_c="rgba(0,0,0,0.6)"
