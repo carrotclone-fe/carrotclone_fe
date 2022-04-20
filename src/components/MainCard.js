@@ -7,13 +7,22 @@ import { CgMoreVerticalAlt } from "react-icons/cg";
 import "../shared/App.css";
 import ReactModal from "react-modal";
 import { history } from "../redux/configStore";
+import { useDispatch } from "react-redux";
+import { getCookie } from "../shared/Cookie";
+import { actionsCreators as EtcActions } from "../redux/modules/etc_mod";
 
 const MainCard = (props) => {
   const { page } = props;
-  console.log(props.postid);
+  console.log(props);
 
   const [ModalState, setModalState] = React.useState(false);
   const [likeState, setLikeState] = React.useState(false);
+
+  const dispatch = useDispatch()
+
+  const ChangeStatus = (e) => {
+    dispatch(EtcActions.status_DB(props.postid, e.target.value))
+  }
 
   return (
     <React.Fragment>
@@ -88,7 +97,7 @@ const MainCard = (props) => {
                 setModalState(true);
               }}
             >
-              <IoEllipsisVertical />
+              {props.username === getCookie() ? <IoEllipsisVertical /> : null}
             </CardGrid>
           )}
         </CardGrid>
@@ -128,7 +137,7 @@ const MainCard = (props) => {
           font_size="16px"
           font_weight="550"
         >
-          <select>
+          <select onChange={ChangeStatus}>
             <option value="">거래 상태 변경</option>
             <option value="판매중">판매 중</option>
             <option value="예약중">예약 중</option>
@@ -151,7 +160,6 @@ MainCard.defaultProps = {
     address: "",
     profileImage: "",
   },
-  postId: 0,
   title: "",
   content: "",
   category: "",

@@ -40,8 +40,7 @@ export default function Detail(props) {
   };
 
   const likeToggle = (e) => {
-    console.log(detailList)
-    // dispatch(EtcActions.like_DB(param.postid, username));
+    dispatch(EtcActions.like_DB(param.postid, detailList.love));
   };
 
   useEffect(() => {
@@ -179,7 +178,7 @@ export default function Detail(props) {
             className={"like-btn"}
             onClick={likeToggle}
           >
-            <AiFillHeart />
+            {detailList.love ? <AiFillHeart /> : <IoHeartOutline />}
           </button>
 
           <div className={"price-opt"}>
