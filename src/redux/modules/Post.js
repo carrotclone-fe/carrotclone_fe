@@ -98,8 +98,44 @@ const addPostDB = (title, imageList, category, price, content, username) => {
   };
 };
 
-const editPostDB = () => {
-  return function (dispatch, getState, { history }) {};
+const editPostDB = (title, imageList, category, price, content, username) => {
+  return function (dispatch, getState, { history }) {
+    const fromData = new FormData();
+
+    fromData.append(
+      "com",
+      new Blob(
+        [
+          JSON.stringify({
+            title: title,
+            categoryid: parseInt(category),
+            price: parseInt(price),
+            content: content,
+            username: username,
+          }),
+        ],
+        {
+          type: "application/json",
+        }
+      )
+    );
+
+    imageList.map((e, idx) => {
+      return fromData.append("files", e);
+    });
+
+    // fromData.forEach((e) => {
+    //   console.log(e);
+    // });
+    apis
+      .postEdit(fromData)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 };
 
 const deletePostDB = () => {

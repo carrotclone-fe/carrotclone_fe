@@ -7,9 +7,7 @@ import { CgMoreVerticalAlt } from "react-icons/cg";
 import "../shared/App.css";
 import ReactModal from "react-modal";
 import { history } from "../redux/configStore";
-import { useDispatch } from "react-redux";
 import { getCookie } from "../shared/Cookie";
-import { actionsCreators as EtcActions } from "../redux/modules/etc_mod";
 
 const MainCard = (props) => {
   const { page } = props;
@@ -17,16 +15,9 @@ const MainCard = (props) => {
   const [ModalState, setModalState] = React.useState(false);
   const [likeState, setLikeState] = React.useState(false);
 
-  const dispatch = useDispatch()
-
-  const ChangeStatus = (e) => {
-    dispatch(EtcActions.status_DB(props.postid, e.target.value))
-  }
   const editPost = () => {
     history.push(`/write/${props.postid}`);
   };
-
-  console.log(props)
 
   return (
     <React.Fragment>
@@ -141,7 +132,7 @@ const MainCard = (props) => {
           font_size="16px"
           font_weight="550"
         >
-          <select onChange={ChangeStatus}>
+          <select>
             <option value="">거래 상태 변경</option>
             <option value="판매중">판매 중</option>
             <option value="예약중">예약 중</option>
