@@ -4,13 +4,13 @@ import { Grid, Text } from './index'
 
 const Input = (props) => {
 
-    const { label, placeholder, width, max_width, _onChange, type, multiLine, value, bg, color } = props
+    const { label, placeholder, width, max_width, _onChange, type, multiLine, value, bg, color, defaultValue } = props
 
     if (multiLine) {
         return (
             <Grid>
                 {label && <Text margin='0px'>{label}</Text>}
-                <ElTextarea rows={10} color={color} width={width} max_width={max_width} bg={bg} placeholder={placeholder} onChange={_onChange}></ElTextarea>
+                <ElTextarea defaultValue={defaultValue} rows={10} color={color} width={width} max_width={max_width} bg={bg} placeholder={placeholder} onChange={_onChange}></ElTextarea>
             </Grid>
         )
     }
@@ -19,7 +19,7 @@ const Input = (props) => {
         <React.Fragment>
             <Grid>
                 {label && <Text margin='0px'>{label}</Text>}
-                <ElInput type={type} color={color} width={width} placeholder={placeholder} bg={bg} onChange={_onChange}></ElInput>
+                <ElInput defaultValue={defaultValue} type={type} color={color} width={width} placeholder={placeholder} bg={bg} onChange={_onChange}></ElInput>
             </Grid>
         </React.Fragment>
     )

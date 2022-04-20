@@ -14,7 +14,7 @@ const EditUpload = (props) => {
   // });
   // console.log(dd);
 
-  const [imgPreview, setImgPreview] = useState([EditImage]);
+  const [imgPreview, setImgPreview] = useState([]);
   console.log(EditImage);
 
   // useEffect(() => {
@@ -58,7 +58,7 @@ const EditUpload = (props) => {
           <HiUpload />
           <Inputs type="file" id="files" multiple="multiple" />
         </Labels>
-        {/* {EditImage?.map((a, id) => {
+        {EditImage?.map((a, id) => {
           return (
             <CardGrid key={id} margin="0px 25px 25px 0">
               <BiX
@@ -70,7 +70,7 @@ const EditUpload = (props) => {
               <ImageList src={`${a}`} alt={`${a}-${id}`} />
             </CardGrid>
           );
-        })} */}
+        })}
         {imgPreview.map((image, id) => {
           return (
             <CardGrid key={id} margin="0px 25px 25px 0">

@@ -12,7 +12,7 @@ import EditUpload from "../shared/EditImage";
 export default function Write(props) {
   const dispatch = useDispatch();
   const detailList = useSelector((state) => state.Post.detailList);
-  console.log(detailList.imageList);
+  console.log(detailList);
 
   const param = useParams();
 
@@ -41,6 +41,15 @@ export default function Write(props) {
       )
     );
   };
+
+  const category_name = (cateName) => {
+    if(cateName === '생활가전')
+      return 1
+    if(cateName === '여성의류')
+      return 2
+    if(cateName === '남성패션/잡화')
+      return 3
+  }
 
   const EditPost = () => {
     dispatch(postActions.editPostDB());
@@ -83,6 +92,7 @@ export default function Write(props) {
                 placeholder="글 제목"
                 size="30px"
                 value={title}
+                defaultValue={detailList.title}
                 _onChange={(e) => {
                   setTitle(e.target.value);
                 }}
@@ -99,14 +109,16 @@ export default function Write(props) {
                   color: "white",
                   height: "50px",
                 }}
+                
+                defaultValue={category_name(detailList.categoryName)}
                 onChange={(e) => {
                   setCategory(e.target.value);
                 }}
               >
                 <option value="">카테고리를 골라주세요!</option>
-                <option value="1">디지털기기</option>
-                <option value="2">의류</option>
-                <option value="3">생활가전</option>
+                <option value="1">생활가전</option>
+                <option value="2">여성의류</option>
+                <option value="3">남성패션/잡화</option>
               </select>
             </Grid>
             <hr></hr>
@@ -117,6 +129,7 @@ export default function Write(props) {
                 placeholder="가격 (선택사항)"
                 size="30px"
                 value={price}
+                defaultValue={detailList.price}
                 width="100%"
                 _onChange={(e) => {
                   setPrice(e.target.value);
@@ -132,6 +145,7 @@ export default function Write(props) {
                 placeholder="게더동에 올릴 게시글 내용을 작성해 주세요.(가품 및 판매금지품목은 게시가 제한될 수 있어요.)"
                 size="30px"
                 value={content}
+                defaultValue={detailList.content}
                 _onChange={(e) => {
                   setContent(e.target.value);
                 }}

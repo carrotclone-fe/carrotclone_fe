@@ -159,6 +159,9 @@ const GridBox = styled.div`
   //background
   background-color: ${(props) => props.BG_c};
   box-sizing: border-box;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 export default CardGrid;
