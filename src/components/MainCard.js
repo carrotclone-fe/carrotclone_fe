@@ -7,13 +7,19 @@ import { CgMoreVerticalAlt } from "react-icons/cg";
 import "../shared/App.css";
 import ReactModal from "react-modal";
 import { history } from "../redux/configStore";
+import { useSelector } from "react-redux";
+import { getCookie } from "../shared/Cookie";
+import { useParams } from "react-router-dom";
 
 const MainCard = (props) => {
   const { page } = props;
-  console.log(props.postid);
 
   const [ModalState, setModalState] = React.useState(false);
   const [likeState, setLikeState] = React.useState(false);
+
+  const editPost = () => {
+    history.push(`/write/${props.postid}`);
+  };
 
   return (
     <React.Fragment>
@@ -88,7 +94,7 @@ const MainCard = (props) => {
                 setModalState(true);
               }}
             >
-              <IoEllipsisVertical />
+              {props.username === getCookie() ? <IoEllipsisVertical /> : null}
             </CardGrid>
           )}
         </CardGrid>
@@ -135,33 +141,12 @@ const MainCard = (props) => {
             <option value="거래완료">거래완료</option>
           </select>
 
-          <CardGrid>게시글 수정</CardGrid>
+          <CardGrid _onClick={editPost}>게시글 수정</CardGrid>
           <CardGrid>삭제</CardGrid>
         </CardGrid>
       </ReactModal>
     </React.Fragment>
   );
-};
-
-MainCard.defaultProps = {
-  page: null,
-  userInfo: {
-    nickname: "",
-    rate: 36.5,
-    address: "",
-    profileImage: "",
-  },
-  postId: 0,
-  title: "",
-  content: "",
-  category: "",
-  createdAt: "",
-  image: [],
-  price: 0,
-  viewCnt: 0,
-  likeCnt: 0,
-  state: true,
-  consumer: "",
 };
 
 const AspectInner = styled.div`
