@@ -17,6 +17,7 @@ const initialState = {
 
 const status_DB = (postid, status) => {
   return (dispatch, getState, { history }) => {
+    console.log(postid, status, getState())
 
     apis
       .stateEdit(postid, status)

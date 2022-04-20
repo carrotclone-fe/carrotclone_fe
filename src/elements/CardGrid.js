@@ -40,7 +40,7 @@ const CardGrid = (props) => {
   } = props;
 
   //event category
-  const { _onClick } = props;
+  const { _onClick, hover } = props;
 
   //children category
   const { children } = props;
@@ -78,6 +78,7 @@ const CardGrid = (props) => {
     font_size,
     font_weight,
     color,
+    hover,
   };
 
   return (
@@ -121,6 +122,7 @@ CardGrid.defaultProps = {
   color: null,
 
   _onClick: null,
+  hover: null,
 };
 
 const GridBox = styled.div`
@@ -159,9 +161,10 @@ const GridBox = styled.div`
   //background
   background-color: ${(props) => props.BG_c};
   box-sizing: border-box;
+  ${props => props.hover ? `
   :hover {
     cursor: pointer;
-  }
+  }` : null}
 `;
 
 export default CardGrid;
