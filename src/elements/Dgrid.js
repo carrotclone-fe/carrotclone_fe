@@ -28,9 +28,9 @@ const GridBox = styled.div`
   ${({ is_container }) =>
     is_container &&
     `
-              width: 100%;
+              width: 80%;
               margin: 0 auto;
-              max-width: 425px;
+              max-width: 800px;
             `}
   ${({ is_flex }) => is_flex && "display: flex;"}
   ${({ flex_align }) => flex_align && `align-items: ${flex_align};`}
