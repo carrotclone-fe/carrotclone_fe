@@ -1,15 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Button, Grid, Image, Text, Dgrid, Buttons } from "../elements/index";
+import {
+  Button,
+  Grid,
+  Image,
+  Text,
+  Dgrid,
+  Buttons,
+  CardGrid,
+} from "../elements/index";
 import { IoHeartOutline, IoHeart } from "react-icons/io5";
 import styled from "styled-components";
 import { BiArrowBack, BiHomeAlt, BiDotsVerticalRounded } from "react-icons/bi";
 import { BsShare } from "react-icons/bs";
 import { AiFillHeart } from "react-icons/ai";
-
+import { IoMdArrowRoundBack, IoMdHome } from "react-icons/io";
+import { IoEllipsisVertical } from "react-icons/io5";
 import { history } from "../redux/configStore";
 import SlideImage from "../components/SlideImage";
+import ReactModal from "react-modal";
 
 import { actionsCreators as EtcActions } from "../redux/modules/etc_mod";
 import { actionCreators as poseActions } from "../redux/modules/Post";
@@ -18,6 +28,7 @@ export default function Detail(props) {
   const param = useParams();
   const dispatch = useDispatch();
   const username = useSelector((state) => state.User.user);
+  const [ModalState, setModalState] = React.useState(false);
   const [likeState, setLikeState] = useState();
   const detailList = useSelector((state) => state.Post.detailList);
   console.log(detailList);
@@ -39,29 +50,35 @@ export default function Detail(props) {
   return (
     <DetailWrap>
       <Grid flex="1">
-        <div style={{ display: "flex", width: "60%" }}>
+        <div style={{ display: "flex", width: "95%" }}>
           <Button
             fs="20px"
-            width="20%"
-            margin="0 10px 0 0"
+            width="5%"
+            margin="0 15px 0 10px"
             _onClick={() => history.goBack()}
+            hoverbg="null"
+            bg="white"
           >
-            back
+            <IoMdArrowRoundBack />
           </Button>
           <Button
             fs="20px"
-            width="20%"
-            margin="0 10px 0 0"
+            width="5%"
             _onClick={() => history.push("/main")}
+            hoverbg="null"
+            bg="white"
           >
-            Home
+            <IoMdHome />
           </Button>
         </div>
-        <div style={{ right: "0px", width: "60%", textAlign: "right" }}>
-          <Button fs="2vw" width="10%">
-            ...
-          </Button>
-        </div>
+        <CardGrid
+          _onClick={() => {
+            setModalState(true);
+          }}
+          margin="10px"
+        >
+          <IoEllipsisVertical />
+        </CardGrid>
       </Grid>
 
       {/* {is_login === detail_data.username && ( 
@@ -121,10 +138,13 @@ export default function Detail(props) {
             </div>
 
             <div className={"user-rating"}>
-              <span className={"rating-num"}>36.5 °C</span>
-              <span className={"rating-icon"}></span>
+              <Grid flex_space>
+                <span className={"rating-num"}>36.5 °C</span>
+                <span className={"rating-icon"}></span>
+              </Grid>
+
+              <div className={"rating-guide"}>매너온도</div>
             </div>
-            <div className={"rating-guide"}>매너온도</div>
           </div>
         </Dgrid>
 
@@ -174,6 +194,44 @@ export default function Detail(props) {
           </Buttons>
         </Dgrid>
       </div>
+      <ReactModal
+        state={ModalState}
+        isOpen={ModalState}
+        ariaHideApp={false}
+        onRequestClose={() => setModalState(false)}
+        closeTimeoutMS={200}
+        style={{
+          overlay: {
+            zIndex: 3,
+            backgroundColor: "rgba(0,0,0,0.5)",
+          },
+          content: {
+            borderRadius: 0,
+            top: "calc(100% - 200px)",
+            height: "200px",
+            width: "100%",
+            left: 0,
+            padding: 0,
+
+            transition: "0.3s",
+          },
+        }}
+      >
+        <CardGrid
+          is_flex
+          flex_direction="column"
+          justify_content="space-around"
+          align_items="flex-start"
+          padding="20px"
+          height="100%"
+          font_size="16px"
+          font_weight="550"
+        >
+          <CardGrid>판매상태 변경</CardGrid>
+          <CardGrid>게시글 수정</CardGrid>
+          <CardGrid>삭제</CardGrid>
+        </CardGrid>
+      </ReactModal>
     </DetailWrap>
   );
 }
