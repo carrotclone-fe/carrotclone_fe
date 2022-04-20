@@ -41,34 +41,6 @@ const Upload = () => {
     setImgPreview(imgPreview.filter((b, idx) => idx !== id));
   };
 
-  // return (
-  //   <>
-  //     <div>
-  //       <label htmlFor="files" onChange={uploadFile}>
-  //         <input type="file" id="files" multiple="multiple" />
-  //       </label>
-  //       {imgPreview.map((image, id) => {
-  //         return (
-  //           <div key={id}>
-  //             <but
-  //               type="button"
-  //               onClick={() => {
-  //                 handleDeleteImage(id);
-  //               }}
-  //             >
-  //               X
-  //             </but>
-
-  //             <Image src={`${image}`} alt={`${image}-${id}`} />
-  //           </div>
-  //         );
-  //       })}
-  //     </div>
-  //   </>
-  // );
-  // };
-
-  // CSS준 버전
   return (
     <>
       <CardGrid is_flex width="auto">
@@ -78,7 +50,7 @@ const Upload = () => {
         </Labels>
         {imgPreview.map((image, id) => {
           return (
-            <CardGrid key={id} margin="0 50px 50px 0">
+            <CardGrid key={id} margin="0px 25px 25px 0">
               <BiX
                 type="button"
                 onClick={() => {
@@ -100,10 +72,13 @@ export default Upload;
 const Labels = styled.label`
   display: block;
   text-align: center;
-  line-height: 50px;
+  align-items: center;
+  justify-content: center;
+  line-height: 100px;
   font-size: 18px;
-  width: 50px;
-  height: 50px;
+  width: 150px;
+  height: 100px;
+  margin: 0 25px 0 25px;
   border: 1px solid rgba(0, 0, 0, 0.07);
   border-radius: 3px;
 `;

@@ -6,6 +6,7 @@ import { IoEllipsisVertical } from "react-icons/io5";
 import { CgMoreVerticalAlt } from "react-icons/cg";
 import "../shared/App.css";
 import ReactModal from "react-modal";
+import { history } from "../redux/configStore";
 
 const MainCard = (props) => {
   const { page } = props;
@@ -24,7 +25,12 @@ const MainCard = (props) => {
         align_items="flex-start"
         position="relative"
       >
-        <CardGrid width="20%">
+        <CardGrid
+          width="20%"
+          _onClick={() => {
+            history.push(`/detail/${props.postid}`);
+          }}
+        >
           <AspectInner src={props.image} />
         </CardGrid>
         <CardGrid
@@ -33,6 +39,9 @@ const MainCard = (props) => {
           align_items="flex-start"
           gap="5px"
           width="60%"
+          _onClick={() => {
+            history.push(`/detail/${props.postid}`);
+          }}
         >
           <TextLabel F_size="17px" F_weight="bold">
             {props.title}
@@ -51,7 +60,7 @@ const MainCard = (props) => {
                 </TextLabel>
               </CardGrid>
             )}
-            <TextLabel F_weight="bold">{props.price}</TextLabel>
+            <TextLabel F_weight="bold">{props.price}원</TextLabel>
           </CardGrid>
         </CardGrid>
         <CardGrid
@@ -119,7 +128,13 @@ const MainCard = (props) => {
           font_size="16px"
           font_weight="550"
         >
-          <CardGrid>판매상태 변경</CardGrid>
+          <select>
+            <option value="">거래 상태 변경</option>
+            <option value="판매중">판매 중</option>
+            <option value="예약중">예약 중</option>
+            <option value="거래완료">거래완료</option>
+          </select>
+
           <CardGrid>게시글 수정</CardGrid>
           <CardGrid>삭제</CardGrid>
         </CardGrid>

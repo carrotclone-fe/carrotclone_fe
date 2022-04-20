@@ -58,16 +58,15 @@ const Main = (props) => {
         {postList
           ? postList.map((p, idx) => {
               return (
-                <Button
-                  _onClick={() => {
-                    history.push(`/detail/${p.postid}`);
-                  }}
-                  key={idx}
-                  hoverbg="null"
-                  bg="white"
-                >
-                  <MainCard key={idx} {...p} list={props} />
-                </Button>
+                // <Button
+                //   _onClick={() => {
+                //     history.push(`/detail/${p.postid}`);
+                //   }}
+                //   key={idx}
+                //   hoverbg="null"
+                //   bg="white"
+                // >
+                <MainCard key={idx} {...p} list={props} />
               );
             })
           : null}

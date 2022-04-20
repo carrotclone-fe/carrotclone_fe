@@ -4,6 +4,7 @@ import { Button, Grid, Image, Input, Text } from "../elements";
 import { history } from "../redux/configStore";
 import Upload from "../shared/Upload";
 import { actionCreators as postActions } from "../redux/modules/Post";
+import { IoMdArrowRoundBack, IoMdHome } from "react-icons/io";
 
 export default function Write(props) {
   const dispatch = useDispatch();
@@ -35,14 +36,16 @@ export default function Write(props) {
       <Grid flex_space>
         <div style={{ display: "flex" }}>
           <Button
-            width="100px"
-            _onClick={() => {
-              history.goBack();
-            }}
+            fs="20px"
+            width="5%"
+            margin="0 15px 0 10px"
+            _onClick={() => history.goBack()}
+            hoverbg="null"
+            bg="white"
           >
-            back
+            <IoMdArrowRoundBack />
           </Button>
-          <Grid flex_col margin="5px 0 0 10px">
+          <Grid flex_col margin="11px 0 0 10px">
             <Text size="20px">중고거래 글쓰기</Text>
           </Grid>
         </div>
