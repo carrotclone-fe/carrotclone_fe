@@ -112,11 +112,9 @@ export default handleActions(
     [SET_POST]: (state, action) =>
       produce(state, (draft) => {
         draft.list = action.payload.post_list;
-        console.log(draft.list);
       }),
     [SET_DETAIL]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload);
         draft.detailList = action.payload.detail_list;
       }),
     [ADD_POST]: (state, action) => produce(state, (draft) => {}),

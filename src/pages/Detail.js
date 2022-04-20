@@ -31,7 +31,6 @@ export default function Detail(props) {
   const [ModalState, setModalState] = React.useState(false);
   const [likeState, setLikeState] = useState();
   const detailList = useSelector((state) => state.Post.detailList);
-  console.log(detailList);
 
   const statusFix = (e) => {
     if (!e.target.value) return;
@@ -40,8 +39,7 @@ export default function Detail(props) {
   };
 
   const likeToggle = (e) => {
-    console.log(detailList)
-    // dispatch(EtcActions.like_DB(param.postid, username));
+    dispatch(EtcActions.like_DB(param.postid, username));
   };
 
   useEffect(() => {
@@ -143,6 +141,7 @@ export default function Detail(props) {
                 <span className={"rating-num"}>36.5 °C</span>
                 <span className={"rating-icon"}></span>
               </Grid>
+
               <div className={"rating-guide"}>매너온도</div>
             </div>
           </div>
@@ -177,7 +176,7 @@ export default function Detail(props) {
           <button
             type={"button"}
             className={"like-btn"}
-            onClick={likeToggle}
+            // onClick={() => handleClickLikeBtn(detail_data.postId)}
           >
             <AiFillHeart />
           </button>
