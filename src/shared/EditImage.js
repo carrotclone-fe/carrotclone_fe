@@ -1,14 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CardGrid, Image } from "../elements";
 import { BiX } from "react-icons/bi";
 import styled from "styled-components";
 import { HiUpload } from "react-icons/hi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { imgActions } from "../redux/modules/image";
 
-const Upload = () => {
+const EditUpload = (props) => {
+  let EditImage = props.image;
   const dispatch = useDispatch();
-  const [imgPreview, setImgPreview] = useState([]);
+  // let dd = EditImage?.map((a) => {
+  //   return a
+  // });
+  // console.log(dd);
+
+  const [imgPreview, setImgPreview] = useState([EditImage]);
+  console.log(EditImage);
+
+  // useEffect(() => {
+  //   dispatch(imgActions.editPre(...EditImage));
+  // });
 
   const uploadFile = (e) => {
     const imageList = e.target.files;
@@ -18,7 +29,6 @@ const Upload = () => {
       const currentImageUrl = URL.createObjectURL(imageList[i]);
       imageUrlList.push(currentImageUrl);
     }
-
     if (imageUrlList.length > 10) {
       imageUrlList = imageUrlList.slice(0, 10);
     }
@@ -39,6 +49,8 @@ const Upload = () => {
     setImgPreview(imgPreview.filter((b, idx) => idx !== id));
   };
 
+  const DeleteImage = (id) => {};
+
   return (
     <>
       <CardGrid is_flex width="auto">
@@ -46,6 +58,19 @@ const Upload = () => {
           <HiUpload />
           <Inputs type="file" id="files" multiple="multiple" />
         </Labels>
+        {/* {EditImage?.map((a, id) => {
+          return (
+            <CardGrid key={id} margin="0px 25px 25px 0">
+              <BiX
+                type="button"
+                onClick={() => {
+                  handleDeleteImage(id);
+                }}
+              />
+              <ImageList src={`${a}`} alt={`${a}-${id}`} />
+            </CardGrid>
+          );
+        })} */}
         {imgPreview.map((image, id) => {
           return (
             <CardGrid key={id} margin="0px 25px 25px 0">
@@ -55,7 +80,6 @@ const Upload = () => {
                   handleDeleteImage(id);
                 }}
               />
-
               <ImageList src={`${image}`} alt={`${image}-${id}`} />
             </CardGrid>
           );
@@ -65,7 +89,7 @@ const Upload = () => {
   );
 };
 
-export default Upload;
+export default EditUpload;
 
 const Labels = styled.label`
   display: block;

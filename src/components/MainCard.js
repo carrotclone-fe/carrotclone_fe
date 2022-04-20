@@ -13,7 +13,6 @@ import { actionsCreators as EtcActions } from "../redux/modules/etc_mod";
 
 const MainCard = (props) => {
   const { page } = props;
-  console.log(props);
 
   const [ModalState, setModalState] = React.useState(false);
   const [likeState, setLikeState] = React.useState(false);
@@ -23,6 +22,9 @@ const MainCard = (props) => {
   const ChangeStatus = (e) => {
     dispatch(EtcActions.status_DB(props.postid, e.target.value))
   }
+  const editPost = () => {
+    history.push(`/write/${props.postid}`);
+  };
 
   return (
     <React.Fragment>
@@ -144,32 +146,12 @@ const MainCard = (props) => {
             <option value="거래완료">거래완료</option>
           </select>
 
-          <CardGrid>게시글 수정</CardGrid>
+          <CardGrid _onClick={editPost}>게시글 수정</CardGrid>
           <CardGrid>삭제</CardGrid>
         </CardGrid>
       </ReactModal>
     </React.Fragment>
   );
-};
-
-MainCard.defaultProps = {
-  page: null,
-  userInfo: {
-    nickname: "",
-    rate: 36.5,
-    address: "",
-    profileImage: "",
-  },
-  title: "",
-  content: "",
-  category: "",
-  createdAt: "",
-  image: [],
-  price: 0,
-  viewCnt: 0,
-  likeCnt: 0,
-  state: true,
-  consumer: "",
 };
 
 const AspectInner = styled.div`

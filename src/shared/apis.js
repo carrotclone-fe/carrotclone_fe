@@ -17,7 +17,7 @@ instance.interceptors.request.use(function (config) {
 export const formDatas = axios.create({
   baseURL: "http://13.125.220.132",
   headers: {
-    // "content-type": "multipart/form-data",
+    "content-type": "multipart/form-data",
   },
 });
 
@@ -49,7 +49,7 @@ export const apis = {
 
   // POST수정 PUT
   postEdit: (title, imagelist, category, price, content, postid) =>
-    instance.put(`/api/post/${postid}`, {
+    formDatas.put(`/api/post/${postid}`, {
       title: title,
       imagelist: imagelist,
       category: category,
