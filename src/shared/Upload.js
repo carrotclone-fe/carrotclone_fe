@@ -118,6 +118,8 @@ const ImageList = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.07);
   border-radius: 3px;
   background-image: url("${(props) => props.src}");
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   position: relative;
 `;

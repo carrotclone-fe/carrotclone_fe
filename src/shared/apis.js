@@ -70,5 +70,5 @@ export const apis = {
     }),
 
   // 좋아요 GET
-  like: (postId, username) => instance.get(`api/like/${postId}/${username}`),
+  like: (postId, username) => instance.get(`api/like/${postId}`),
 };

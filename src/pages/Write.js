@@ -58,7 +58,7 @@ export default function Write(props) {
       <hr></hr>
 
       <Grid>
-        <Grid padding="16px">
+        <Grid padding="16px" width='90%' margin='auto'>
           <Input
             bg="grey"
             color="white"
@@ -71,7 +71,7 @@ export default function Write(props) {
           ></Input>
         </Grid>
         <hr></hr>
-        <Grid padding="16px">
+        <Grid padding="16px" width='90%' margin='auto'>
           <select
             style={{
               width: "100%",
@@ -92,7 +92,7 @@ export default function Write(props) {
           </select>
         </Grid>
         <hr></hr>
-        <Grid padding="16px">
+        <Grid padding="16px" width='90%' margin='auto'>
           <Input
             bg="grey"
             color="white"
@@ -106,7 +106,7 @@ export default function Write(props) {
           ></Input>
         </Grid>
         <hr></hr>
-        <Grid padding="16px">
+        <Grid padding="16px" width='90%' margin='auto'>
           <Input
             multiLine
             bg="grey"

@@ -29,7 +29,8 @@ export default function Detail(props) {
   };
 
   const likeToggle = (e) => {
-    dispatch(EtcActions.like_DB(param.postid, username));
+    console.log(detailList)
+    // dispatch(EtcActions.like_DB(param.postid, username));
   };
 
   useEffect(() => {
@@ -121,10 +122,12 @@ export default function Detail(props) {
             </div>
 
             <div className={"user-rating"}>
-              <span className={"rating-num"}>36.5 °C</span>
-              <span className={"rating-icon"}></span>
+              <Grid flex_space>
+                <span className={"rating-num"}>36.5 °C</span>
+                <span className={"rating-icon"}></span>
+              </Grid>
+              <div className={"rating-guide"}>매너온도</div>
             </div>
-            <div className={"rating-guide"}>매너온도</div>
           </div>
         </Dgrid>
 
@@ -157,7 +160,7 @@ export default function Detail(props) {
           <button
             type={"button"}
             className={"like-btn"}
-            // onClick={() => handleClickLikeBtn(detail_data.postId)}
+            onClick={likeToggle}
           >
             <AiFillHeart />
           </button>
