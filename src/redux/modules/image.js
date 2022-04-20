@@ -10,8 +10,10 @@ const EDIT_PRE = "EDIT_PRE";
 
 const setPre = createAction(SET_PRE, (data) => ({ data }));
 const deletePre = createAction(DELETE_PRE, (imageId) => ({ imageId }));
+const editPre = createAction(EDIT_PRE, (editImage) => ({ editImage }));
 
 const initialState = {
+  preView: [],
   files: [],
 };
 
@@ -28,6 +30,7 @@ export default handleActions(
           (i, idx) => idx !== action.payload.imageId
         );
       }),
+    [EDIT_PRE]: (state, action) => produce(state, (draft) => {}),
   },
   initialState
 );
@@ -35,6 +38,7 @@ export default handleActions(
 const imgActions = {
   setPre,
   deletePre,
+  editPre,
 };
 
 export { imgActions };

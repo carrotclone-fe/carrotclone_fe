@@ -9,17 +9,7 @@ import { imgActions } from "../redux/modules/image";
 const EditUpload = (props) => {
   let EditImage = props.image;
   const dispatch = useDispatch();
-  // let dd = EditImage?.map((a) => {
-  //   return a
-  // });
-  // console.log(dd);
-
-  const [imgPreview, setImgPreview] = useState([EditImage]);
-  console.log(EditImage);
-
-  // useEffect(() => {
-  //   dispatch(imgActions.editPre(...EditImage));
-  // });
+  const [imgPreview, setImgPreview] = useState([]);
 
   const uploadFile = (e) => {
     const imageList = e.target.files;
@@ -58,7 +48,7 @@ const EditUpload = (props) => {
           <HiUpload />
           <Inputs type="file" id="files" multiple="multiple" />
         </Labels>
-        {/* {EditImage?.map((a, id) => {
+        {EditImage?.map((a, id) => {
           return (
             <CardGrid key={id} margin="0px 25px 25px 0">
               <BiX
@@ -70,7 +60,7 @@ const EditUpload = (props) => {
               <ImageList src={`${a}`} alt={`${a}-${id}`} />
             </CardGrid>
           );
-        })} */}
+        })}
         {imgPreview.map((image, id) => {
           return (
             <CardGrid key={id} margin="0px 25px 25px 0">
