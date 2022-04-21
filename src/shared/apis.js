@@ -23,6 +23,7 @@ export const formDatas = axios.create({
 
 formDatas.interceptors.request.use(function (config) {
   const accessToken = document.cookie.split("=")[1];
+  console.log(accessToken)
   config.headers.common["Authorization"] = `${accessToken}`;
   // console.log(config);
   return config;
@@ -48,8 +49,8 @@ export const apis = {
   postWrite: (fromData) => formDatas.post("/api/post", fromData),
 
   // POST수정 PUT
-  postEdit: (fromData, postid) =>
-    formDatas.put(`/api/post/${postid}`, fromData),
+  postEdit: (payload, postid) =>
+    instance.put(`/api/post/${postid}`, { payload }),
 
   // POST삭제 DELETE
   postDelete: (postid) => instance.delete(`/api/post/${postid}`),

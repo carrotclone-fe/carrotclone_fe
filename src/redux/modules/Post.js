@@ -31,7 +31,6 @@ const getPostDB = () => {
       .mainGet()
       .then((res) => {
         dispatch(setPost(res.data));
-        console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -45,7 +44,6 @@ const getDetailDB = (postid) => {
       .detailPost(postid)
       .then((res) => {
         dispatch(setDetail(res.data));
-        console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -86,8 +84,6 @@ const addPostDB = (title, imageList, category, price, content, username) => {
       .postWrite(fromData)
       .then((res) => {
         history.replace("/main");
-        console.log(res);
-        history.replace("/main");
       })
       .catch((err) => {
         console.log(err);
@@ -97,37 +93,42 @@ const addPostDB = (title, imageList, category, price, content, username) => {
 
 const editPostDB = (title, imageList, category, price, content, postId) => {
   return function (dispatch, getState, { history }) {
-    const fromData = new FormData();
+    // const fromData = new FormData();
 
-    fromData.append(
-      "com",
-      new Blob(
-        [
-          JSON.stringify({
-            title: title,
-            categoryid: parseInt(category),
-            price: parseInt(price),
-            content: content,
-          }),
-        ],
-        {
-          type: "application/json",
-        }
-      )
-    );
+    // fromData.append(
+    //   "com",
+    //   new Blob(
+    //     [
+    //       JSON.stringify({
+    //         title: title,
+    //         categoryid: parseInt(category),
+    //         price: parseInt(price),
+    //         content: content,
+    //       }),
+    //     ],
+    //     {
+    //       type: "application/json",
+    //     }
+    //   )
+    // );
 
-    imageList.map((e, idx) => {
-      return fromData.append("files", e);
-    });
+    // imageList.map((e, idx) => {
+    //   return fromData.append("files", e);
+    // });
 
     // fromData.forEach((e) => {
     //   console.log(e);
     // });
     apis
-      .postEdit(fromData, postId)
+      .postEdit({
+        title: title,
+        categoryid: parseInt(category),
+        price: parseInt(price),
+        content: content,
+      }, postId)
       .then((res) => {
+        console.log(res)
         history.replace("/main");
-        console.log(res);
       })
       .catch((err) => {
         console.log(err);

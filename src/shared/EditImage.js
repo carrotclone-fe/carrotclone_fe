@@ -41,20 +41,16 @@ const EditUpload = (props) => {
 
   return (
     <>
-      <CardGrid is_flex width="auto">
-        <Labels htmlFor="files" onChange={uploadFile}>
-          <HiUpload />
-          <Inputs type="file" id="files" multiple="multiple" />
-        </Labels>
+      <CardGrid is_flex width="auto" margin='20px 0 0 30px'>
         {EditImage?.map((a, id) => {
           return (
             <CardGrid key={id} margin="0px 25px 25px 0">
-              <BiX
+              {/* <BiX
                 type="button"
                 onClick={() => {
                   handleDeleteImage(id);
                 }}
-              />
+              /> */}
               <ImageList src={`${a}`} alt={`${a}-${id}`} />
             </CardGrid>
           );

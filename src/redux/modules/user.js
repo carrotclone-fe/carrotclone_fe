@@ -22,8 +22,6 @@ const Sign_upDB = (username, password, passwordcheck) => {
     return function (dispatch, getState, { history }) {
         apis.signup(username, password, passwordcheck)
             .then((res) => {
-                console.log(res)
-
                 dispatch(sign_up({ username, password, passwordcheck }))
 
                 window.alert('회원가입완료 !')
@@ -37,8 +35,6 @@ const Log_inDB = (username, password) => {
     return function (dispatch, getState, { history }) {
         apis.login(username, password)
             .then((res) => {
-                console.log(res)
-
                 let token = res.headers.authorization
 
                 document.cookie = `token=${token}`

@@ -20,8 +20,6 @@ const status_DB = (postid, status) => {
     apis
       .stateEdit(postid, status)
       .then((res) => {
-        console.log(res);
-
         let new_Arr = getState().Post.list.map((v) => {
           if (v.postid === postid) { return { ...v, status: status } }
 
@@ -42,8 +40,6 @@ const like_DB = (postid, love) => {
     apis
       .like(postid)
       .then((res) => {
-        console.log(res);
-
         let new_Arr = { ...getState().Post.detailList, love: !love }
 
         dispatch(PostActions.setDetail(new_Arr))
