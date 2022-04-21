@@ -48,8 +48,8 @@ export const apis = {
   postWrite: (fromData) => formDatas.post("/api/post", fromData),
 
   // POST수정 PUT
-  postEdit: (fromData, postid) =>
-    formDatas.put(`/api/post/${postid}`, fromData),
+  postEdit: (title, category, price, content, postid) =>
+    instance.put(`/api/post/${postid}`, { title, category, price, content }),
 
   // POST삭제 DELETE
   postDelete: (postid) => instance.delete(`/api/post/${postid}`),
