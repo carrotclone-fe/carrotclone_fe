@@ -13,8 +13,6 @@ export default function Login(props) {
     const dispatch = useDispatch()
 
     const login = () => {
-        console.log(userId, userPw)
-
         dispatch(UserActions.Log_inDB(userId, userPw))
     }
 

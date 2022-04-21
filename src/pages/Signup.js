@@ -14,8 +14,6 @@ export default function Signup(props) {
   const dispatch = useDispatch();
 
   const signup = () => {
-    console.log(userId, userPw, validPw);
-
     if (!regCheck(userId, "id")) return;
     if (!regCheck(userPw, "pw")) return;
     if (userPw !== validPw) return;

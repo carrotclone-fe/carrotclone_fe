@@ -24,7 +24,7 @@ export const formDatas = axios.create({
 formDatas.interceptors.request.use(function (config) {
   const accessToken = document.cookie.split("=")[1];
   config.headers.common["Authorization"] = `${accessToken}`;
-  console.log(config);
+  // console.log(config);
   return config;
 });
 

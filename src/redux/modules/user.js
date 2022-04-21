@@ -20,8 +20,6 @@ const initialState = {
 
 const Sign_upDB = (username, password, passwordcheck) => {
     return function (dispatch, getState, { history }) {
-        console.log(username, password, passwordcheck)
-
         apis.signup(username, password, passwordcheck)
             .then((res) => {
                 console.log(res)
@@ -37,14 +35,6 @@ const Sign_upDB = (username, password, passwordcheck) => {
 
 const Log_inDB = (username, password) => {
     return function (dispatch, getState, { history }) {
-        console.log(username, password)
-
-        // let testToken = 'BEARER eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJFWFBJUkVEX0RBVEUiOjE2NTA1NTY1MzIsImlzcyI6InNwYXJ0YSIsIlVTRVJfTkFNRSI6ImFzZGYifQ.G-5GMRJsgyg2EQ0G26Jf8Cx68430Qy8NQ92pneZC51M'
-
-        // let token = testToken
-
-        // document.cookie = `token=${token}`
-
         apis.login(username, password)
             .then((res) => {
                 console.log(res)
@@ -64,15 +54,12 @@ const Log_inDB = (username, password) => {
 export default handleActions(
     {
         [CHECK]: (state, action) => produce(state, (draft) => {
-            // console.log(state, action)
             draft.user = action.payload
         }),
         [SIGN_UP]: (state, action) => produce(state, (draft) => {
-            console.log(state, action)
 
         }),
         [LOG_IN]: (state, action) => produce(state, (draft) => {
-            console.log(state, action)
 
         }),
     }, initialState

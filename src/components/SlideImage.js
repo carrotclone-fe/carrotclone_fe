@@ -15,7 +15,6 @@ import { Image } from "../elements";
 
 export default function SlideImage() {
   const imageList = useSelector((state) => state.Post.detailList.imageList);
-  console.log(imageList);
 
   return (
     <>

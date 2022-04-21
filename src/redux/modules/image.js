@@ -22,7 +22,6 @@ export default handleActions(
     [SET_PRE]: (state, action) =>
       produce(state, (draft) => {
         draft.files = [...state.files, ...action.payload.data];
-        console.log(draft.files);
       }),
     [DELETE_PRE]: (state, action) =>
       produce(state, (draft) => {
