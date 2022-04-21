@@ -16,7 +16,8 @@ export default function Write(props) {
   const param = useParams();
 
   useEffect(() => {
-    dispatch(ImageActions.getDetailDB(param.postid));
+    if (param.postid)
+      dispatch(ImageActions.getDetailDB(param.postid));
   }, []);
 
   const imageList = useSelector((state) => state.Image.files);
@@ -42,11 +43,11 @@ export default function Write(props) {
   };
 
   const category_name = (cateName) => {
-    if(cateName === '생활가전')
+    if (cateName === '생활가전')
       return 1
-    if(cateName === '여성의류')
+    if (cateName === '여성의류')
       return 2
-    if(cateName === '남성패션/잡화')
+    if (cateName === '남성패션/잡화')
       return 3
   }
 
@@ -117,7 +118,7 @@ export default function Write(props) {
                   color: "white",
                   height: "50px",
                 }}
-                
+
                 defaultValue={category_name(detailList.categoryName)}
                 onChange={(e) => {
                   setCategory(e.target.value);

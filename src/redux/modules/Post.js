@@ -91,6 +91,7 @@ const addPostDB = (title, imageList, category, price, content, username) => {
       .postWrite(fromData)
       .then((res) => {
         console.log(res);
+        history.replace('/main')
       })
       .catch((err) => {
         console.log(err);
@@ -138,8 +139,16 @@ const editPostDB = (title, imageList, category, price, content, username) => {
   };
 };
 
-const deletePostDB = () => {
-  return function (dispatch, getState, { history }) {};
+const deletePostDB = (postid) => {
+  return function (dispatch, getState, { history }) {
+    apis.postDelete(postid)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  };
 };
 
 // 리덕스
@@ -153,9 +162,9 @@ export default handleActions(
       produce(state, (draft) => {
         draft.detailList = action.payload.detail_list;
       }),
-    [ADD_POST]: (state, action) => produce(state, (draft) => {}),
-    [EDIT_POST]: (state, action) => produce(state, (draft) => {}),
-    [DELETE_POST]: (state, action) => produce(state, (draft) => {}),
+    [ADD_POST]: (state, action) => produce(state, (draft) => { }),
+    [EDIT_POST]: (state, action) => produce(state, (draft) => { }),
+    [DELETE_POST]: (state, action) => produce(state, (draft) => { }),
   },
   initialState
 );
