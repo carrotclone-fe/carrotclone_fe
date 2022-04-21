@@ -47,6 +47,7 @@ const MainCard = (props) => {
           _onClick={() => {
             history.push(`/detail/${props.postid}`);
           }}
+          hover
         >
           <AspectInner src={props.image} />
         </CardGrid>
@@ -104,6 +105,7 @@ const MainCard = (props) => {
               _onClick={() => {
                 setModalState(true);
               }}
+              hover
             >
               {props.username === getCookie() ? <IoEllipsisVertical /> : null}
             </CardGrid>
@@ -156,8 +158,8 @@ const MainCard = (props) => {
             <option value="거래완료">거래완료</option>
           </select>
 
-          <CardGrid _onClick={editPost}>게시글 수정</CardGrid>
-          <CardGrid _onClick={deletePost}>삭제</CardGrid>
+          <CardGrid _onClick={editPost} hover>게시글 수정</CardGrid>
+          <CardGrid _onClick={deletePost} hover>삭제</CardGrid>
         </CardGrid>
       </ReactModal>
     </React.Fragment>
