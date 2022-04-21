@@ -97,34 +97,34 @@ const addPostDB = (title, imageList, category, price, content, username) => {
 
 const editPostDB = (title, imageList, category, price, content, postId) => {
   return function (dispatch, getState, { history }) {
-    const fromData = new FormData();
+    // const fromData = new FormData();
 
-    fromData.append(
-      "com",
-      new Blob(
-        [
-          JSON.stringify({
-            title: title,
-            categoryid: parseInt(category),
-            price: parseInt(price),
-            content: content,
-          }),
-        ],
-        {
-          type: "application/json",
-        }
-      )
-    );
+    // fromData.append(
+    //   "com",
+    //   new Blob(
+    //     [
+    //       JSON.stringify({
+    //         title: title,
+    //         categoryid: parseInt(category),
+    //         price: parseInt(price),
+    //         content: content,
+    //       }),
+    //     ],
+    //     {
+    //       type: "application/json",
+    //     }
+    //   )
+    // );
 
-    imageList.map((e, idx) => {
-      return fromData.append("files", e);
-    });
+    // imageList.map((e, idx) => {
+    //   return fromData.append("files", e);
+    // });
 
     // fromData.forEach((e) => {
     //   console.log(e);
     // });
     apis
-      .postEdit(fromData, postId)
+      .postEdit(title, parseInt(category), parseInt(price), content, postId)
       .then((res) => {
         history.replace("/main");
         console.log(res);
