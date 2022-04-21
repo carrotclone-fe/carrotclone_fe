@@ -15,18 +15,13 @@ const setPost = createAction(SET_POST, (post_list) => ({ post_list }));
 const setDetail = createAction(SET_DETAIL, (detail_list) => ({ detail_list }));
 const addPost = createAction(ADD_POST, (post_list) => ({ post_list }));
 const editPost = createAction(EDIT_POST, (post_list) => ({ post_list }));
-const deletePost = createAction(DELETE_POST, (post_list) => ({ post_list }));
+const deletePost = createAction(DELETE_POST, (post_id) => ({ post_id }));
 
 // 초기값
 const initialState = {
   list: [],
   is_loading: false,
   detailList: [],
-};
-const initialPost = {
-  title: "제목",
-  content: "내용",
-  imgaeList: [],
 };
 
 // 미들 웨어
@@ -90,8 +85,9 @@ const addPostDB = (title, imageList, category, price, content, username) => {
     apis
       .postWrite(fromData)
       .then((res) => {
+        history.replace("/main");
         console.log(res);
-        history.replace('/main')
+        history.replace("/main");
       })
       .catch((err) => {
         console.log(err);
@@ -99,7 +95,7 @@ const addPostDB = (title, imageList, category, price, content, username) => {
   };
 };
 
-const editPostDB = (title, imageList, category, price, content, username) => {
+const editPostDB = (title, imageList, category, price, content, postId) => {
   return function (dispatch, getState, { history }) {
     const fromData = new FormData();
 
@@ -112,7 +108,6 @@ const editPostDB = (title, imageList, category, price, content, username) => {
             categoryid: parseInt(category),
             price: parseInt(price),
             content: content,
-            username: username,
           }),
         ],
         {
@@ -129,8 +124,9 @@ const editPostDB = (title, imageList, category, price, content, username) => {
     //   console.log(e);
     // });
     apis
-      .postEdit(fromData)
+      .postEdit(fromData, postId)
       .then((res) => {
+        history.replace("/main");
         console.log(res);
       })
       .catch((err) => {
@@ -139,15 +135,17 @@ const editPostDB = (title, imageList, category, price, content, username) => {
   };
 };
 
-const deletePostDB = (postid) => {
+const deletePostDB = (postId) => {
   return function (dispatch, getState, { history }) {
-    apis.postDelete(postid)
+    apis
+      .postDelete(postId)
       .then((res) => {
-        console.log(res)
+        dispatch(deletePost(postId));
+        alert(res.data);
       })
       .catch((err) => {
-        console.log(err)
-      })
+        console.log(err);
+      });
   };
 };
 
@@ -162,9 +160,13 @@ export default handleActions(
       produce(state, (draft) => {
         draft.detailList = action.payload.detail_list;
       }),
-    [ADD_POST]: (state, action) => produce(state, (draft) => { }),
-    [EDIT_POST]: (state, action) => produce(state, (draft) => { }),
-    [DELETE_POST]: (state, action) => produce(state, (draft) => { }),
+
+    [DELETE_POST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list = state.list.filter(
+          (i) => i.postid !== action.payload.post_id
+        );
+      }),
   },
   initialState
 );

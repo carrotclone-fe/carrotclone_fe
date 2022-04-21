@@ -16,8 +16,7 @@ export default function Write(props) {
   const param = useParams();
 
   useEffect(() => {
-    if (param.postid)
-      dispatch(ImageActions.getDetailDB(param.postid));
+    if (param.postid) dispatch(ImageActions.getDetailDB(param.postid));
   }, []);
 
   const imageList = useSelector((state) => state.Image.files);
@@ -28,8 +27,9 @@ export default function Write(props) {
 
   const username = useSelector((state) => state.User.user);
 
+  const postId = param.postid;
+
   const Upload_Post = () => {
-    // history.push("/main");
     dispatch(
       postActions.addPostDB(
         title,
@@ -43,14 +43,10 @@ export default function Write(props) {
   };
 
   const category_name = (cateName) => {
-    if (cateName === '생활가전')
-      return 1
-    if (cateName === '여성의류')
-      return 2
-    if (cateName === '남성패션/잡화')
-      return 3
-  }
-
+    if (cateName === "생활가전") return 1;
+    if (cateName === "여성의류") return 2;
+    if (cateName === "남성패션/잡화") return 3;
+  };
   const EditPost = () => {
     dispatch(
       postActions.editPostDB(
@@ -59,7 +55,7 @@ export default function Write(props) {
         categoryid,
         price,
         content,
-        username
+        postId
       )
     );
   };
@@ -84,8 +80,8 @@ export default function Write(props) {
                 <Text size="20px">중고거래 수정하기</Text>
               </Grid>
             </div>
-            <Button width="100px" _onClick={Upload_Post}>
-              완료
+            <Button width="100px" _onClick={EditPost}>
+              수정
             </Button>
           </Grid>
           <hr></hr>
@@ -118,7 +114,6 @@ export default function Write(props) {
                   color: "white",
                   height: "50px",
                 }}
-
                 defaultValue={category_name(detailList.categoryName)}
                 onChange={(e) => {
                   setCategory(e.target.value);

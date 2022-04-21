@@ -39,8 +39,6 @@ const EditUpload = (props) => {
     setImgPreview(imgPreview.filter((b, idx) => idx !== id));
   };
 
-  const DeleteImage = (id) => {};
-
   return (
     <>
       <CardGrid is_flex width="auto">
