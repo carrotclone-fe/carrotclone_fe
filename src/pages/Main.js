@@ -14,6 +14,7 @@ import { actionCreators as postActions } from "../redux/modules/Post";
 import { useEffect } from "react";
 import { deleteCookie } from "../shared/Cookie";
 import { history } from "../redux/configStore";
+import { imgActions } from "../redux/modules/image";
 const Main = (props) => {
   const postList = useSelector((state) => state.Post.list);
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const Main = (props) => {
 
   useEffect(() => {
     dispatch(postActions.getPostDB());
+    dispatch(imgActions.initPre())
   }, []);
 
   return (

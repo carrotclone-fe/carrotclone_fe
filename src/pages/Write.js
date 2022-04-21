@@ -215,9 +215,9 @@ export default function Write(props) {
                 }}
               >
                 <option value="">카테고리를 골라주세요!</option>
-                <option value="1">디지털기기</option>
-                <option value="2">의류</option>
-                <option value="3">생활가전</option>
+                <option value="1">생활가전</option>
+                <option value="2">여성의류</option>
+                <option value="3">남성패션/잡화</option>
               </select>
             </Grid>
             <hr></hr>
