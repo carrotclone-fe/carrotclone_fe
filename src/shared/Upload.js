@@ -10,17 +10,17 @@ const Upload = (image) => {
   const eddit = image.image;
   const dispatch = useDispatch();
   const [imgPreview, setImgPreview] = useState([]);
-  const [isUrl, setUrl] = useState([]);
 
   const uploadFile = (e) => {
     const imageList = e.target.files;
     let imageUrlList = [...imgPreview];
-
+    // 파일들을 URL로 만듬
     for (let i = 0; i < imageList.length; i++) {
       const currentImageUrl = URL.createObjectURL(imageList[i]);
       imageUrlList.push(currentImageUrl);
     }
 
+    // 10개로 갯수 정함
     if (imageUrlList.length > 10) {
       imageUrlList = imageUrlList.slice(0, 10);
     }
@@ -28,6 +28,7 @@ const Upload = (image) => {
 
     let imgList = [];
 
+    // 파일들을 꺼내 배열안에 넣어줌
     for (const key in imageList) {
       if (Object.hasOwnProperty.call(imageList, key)) {
         imgList.push(imageList[key]);
@@ -39,21 +40,27 @@ const Upload = (image) => {
 
   useEffect(() => {
     let editPree = [];
+    // 서버에서 받은 URL을 PreView에 넣어줌
     for (let i = 0; i < eddit.length; i++) {
       editPree.push(eddit[i]);
     }
     setImgPreview(editPree);
+    // 리덕스에 files 인덱스를 맞추기 위해 URL도 같이 넣우줌
     dispatch(imgActions.setPre(editPree));
   }, [eddit]);
 
   const handleDeleteImage = (x, id) => {
+    // 서버에서 준 URL 버킷 이름을 기준으로 찾아
     if (x.indexOf("hyemco-butket") !== -1) {
       dispatch(imgActions.editUrl(x));
+      // URL을 따로 저장
       dispatch(imgActions.deletePre(id));
+      // 리덕스 files에 있는 URL 삭제 (배열을 맞추기 위함)
     } else {
+      // 리덕스에 files 삭제
       dispatch(imgActions.deletePre(id));
     }
-
+    // 프리뷰 삭제
     setImgPreview(imgPreview.filter((b, idx) => idx !== id));
   };
 

@@ -8,16 +8,15 @@ const DELETE_PRE = "DELETE_PRE";
 const EDIT_PRE = "EDIT_PRE";
 const INIT_PRE = "INIT_PRE";
 const EDIT_URL = "EDIT_URL";
-const ROAD_URL = "ROAD_URL";
 
 // 액션 크리에이터
 
 const setPre = createAction(SET_PRE, (data) => ({ data }));
 const deletePre = createAction(DELETE_PRE, (imageId) => ({ imageId }));
 const editPre = createAction(EDIT_PRE, (editImage) => ({ editImage }));
+
 const initPre = createAction(INIT_PRE, () => ({}));
 const editUrl = createAction(EDIT_URL, (Url) => ({ Url }));
-const roadUrl = createAction(ROAD_URL, (data) => ({ data }));
 
 const initialState = {
   preView: [],
@@ -40,11 +39,12 @@ const test = () => {
 
 export default handleActions(
   {
+    // 서버에서 받아온 URL 새로 추가하는 URL 포함해서 files에 넣음
     [SET_PRE]: (state, action) =>
       produce(state, (draft) => {
         draft.files = [...state.files, ...action.payload.data];
       }),
-
+    // 인덱스로 삭제를 함
     [DELETE_PRE]: (state, action) =>
       produce(state, (draft) => {
         draft.files = draft.files.filter(
@@ -52,11 +52,12 @@ export default handleActions(
         );
       }),
 
+    // 서버에서 받아온 URL을 넣음
     [EDIT_PRE]: (state, action) =>
       produce(state, (draft) => {
         draft.preView = action.payload.editImage;
       }),
-
+    // 이미지 초기화
     [INIT_PRE]: (state, action) =>
       produce(state, (draft) => {
         draft.preView = [];
@@ -64,14 +65,10 @@ export default handleActions(
         draft.editUrl = [];
       }),
 
+    // 삭제를 눌렀을때 서버에서 받아온 URL을 따로 저장 해줌
     [EDIT_URL]: (state, action) =>
       produce(state, (draft) => {
         draft.editUrl = [...draft.editUrl, action.payload.Url];
-      }),
-
-    [ROAD_URL]: (state, action) =>
-      produce(state, (draft) => {
-        draft.files = action.payload.data;
       }),
   },
   initialState
@@ -84,7 +81,6 @@ const imgActions = {
   test,
   initPre,
   editUrl,
-  roadUrl,
 };
 
 export { imgActions };

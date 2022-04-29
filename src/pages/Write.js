@@ -14,38 +14,25 @@ import TestList from "../components/testList";
 export default function Write(props) {
   const dispatch = useDispatch();
   const detailList = useSelector((state) => state.Post.detailList);
+  // 파일 이미지를 가져옴
   const Files = useSelector((state) => state.Image.files);
+  // 파일만 넣을 빈 배열
   let newFiles = [];
+  // URL을 분리할 배열
   let reFile = [];
 
-  console.log(Files);
-  // for (const key in Files) {
-  //   if (Object.hasOwnProperty.call(Files, key)) {
-  //     newFiles.push(Files[key]);
-  //   }
-  // }
-  // console.log(newFiles);
-
   for (let i = 0; i < Files.length; i++) {
+    // 조건을 걸어 파일안에 name이 있으면 파일을 넣음
     if (Files[i].name) {
       newFiles.push(Files[i]);
     } else {
+      // URL을 넣음
       reFile.push(Files[i]);
     }
   }
   console.log(newFiles);
   console.log(reFile);
 
-  // const ee = Files.filter((a) => {
-  //   if (a.indexOf("hyemco-butket") !== -1) {
-  //     const Uee = a;
-  //     console.log(Uee);
-  //   } else {
-  //     newFiles.push(a);
-  //   }
-  // });
-  // console.log(ee);
-  // console.log(newFiles);
   const param = useParams();
 
   useEffect(() => {
