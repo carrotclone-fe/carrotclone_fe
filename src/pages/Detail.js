@@ -173,11 +173,7 @@ export default function Detail(props) {
           _className={"ctrl-inner"}
           padding={"16px"}
         >
-          <button
-            type={"button"}
-            className={"like-btn"}
-            onClick={likeToggle}
-          >
+          <button type={"button"} className={"like-btn"} onClick={likeToggle}>
             {detailList.love ? <AiFillHeart /> : <IoHeartOutline />}
           </button>
 
@@ -515,7 +511,7 @@ const DetailWrap = styled.section`
         height: 24px;
         background-position: 0 -123px;
         background-size: 29px 147px;
-        background-image: url("https://d1unjqcospf8gs.cloudfront.net/assets/home/articles/face-icon-set-0cffc52be32961b0bb4a308c272d8f526ddcdeda66dbde6eb32618eeb22b74e6.png");
+        background-image: url("");
       }
       .rating-guide {
         font-size: 11px;

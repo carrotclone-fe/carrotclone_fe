@@ -11,6 +11,10 @@ const EditUpload = (props) => {
   const dispatch = useDispatch();
   const [imgPreview, setImgPreview] = useState([]);
 
+  useEffect(() => {
+    dispatch(imgActions.editPre(EditImage));
+  });
+
   const uploadFile = (e) => {
     const imageList = e.target.files;
     let imageUrlList = [...imgPreview];
@@ -39,9 +43,14 @@ const EditUpload = (props) => {
     setImgPreview(imgPreview.filter((b, idx) => idx !== id));
   };
 
+  const DeleteImage = (id) => {
+    dispatch(imgActions.deletePre(id));
+    setImgPreview(EditImage.filter((b, idx) => idx !== id));
+  };
+
   return (
     <>
-      <CardGrid is_flex width="auto">
+      <CardGrid is_flex width="auto" margin="0px 0 0 25px">
         <Labels htmlFor="files" onChange={uploadFile}>
           <HiUpload />
           <Inputs type="file" id="files" multiple="multiple" />
@@ -52,7 +61,7 @@ const EditUpload = (props) => {
               <BiX
                 type="button"
                 onClick={() => {
-                  handleDeleteImage(id);
+                  DeleteImage(id);
                 }}
               />
               <ImageList src={`${a}`} alt={`${a}-${id}`} />

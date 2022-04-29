@@ -8,18 +8,52 @@ import { IoMdArrowRoundBack, IoMdHome } from "react-icons/io";
 import { useParams } from "react-router-dom";
 import { actionCreators as ImageActions } from "../redux/modules/Post";
 import EditUpload from "../shared/EditImage";
+import { imgActions } from "../redux/modules/image";
+import TestList from "../components/testList";
 
 export default function Write(props) {
   const dispatch = useDispatch();
   const detailList = useSelector((state) => state.Post.detailList);
+  const Files = useSelector((state) => state.Image.files);
+  let newFiles = [];
+  let reFile = [];
 
+  console.log(Files);
+  // for (const key in Files) {
+  //   if (Object.hasOwnProperty.call(Files, key)) {
+  //     newFiles.push(Files[key]);
+  //   }
+  // }
+  // console.log(newFiles);
+
+  for (let i = 0; i < Files.length; i++) {
+    if (Files[i].name) {
+      newFiles.push(Files[i]);
+    } else {
+      reFile.push(Files[i]);
+    }
+  }
+  console.log(newFiles);
+  console.log(reFile);
+
+  // const ee = Files.filter((a) => {
+  //   if (a.indexOf("hyemco-butket") !== -1) {
+  //     const Uee = a;
+  //     console.log(Uee);
+  //   } else {
+  //     newFiles.push(a);
+  //   }
+  // });
+  // console.log(ee);
+  // console.log(newFiles);
   const param = useParams();
 
   useEffect(() => {
     if (param.postid) dispatch(ImageActions.getDetailDB(param.postid));
+    dispatch(imgActions.test());
   }, []);
 
-  const imageList = useSelector((state) => state.Image.files);
+  const imageList = useSelector((state) => state.Image.preView);
   const [title, setTitle] = useState();
   const [categoryid, setCategory] = useState();
   const [price, setPrice] = useState();
@@ -40,6 +74,7 @@ export default function Write(props) {
         username
       )
     );
+    dispatch(imgActions.initPre());
   };
 
   const category_name = (cateName) => {
@@ -181,7 +216,7 @@ export default function Write(props) {
           </Grid>
           <hr></hr>
           <Grid flex="1">
-            <Upload />
+            <Upload image={imageList} />
           </Grid>
 
           <hr></hr>

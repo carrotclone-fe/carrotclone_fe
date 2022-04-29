@@ -45,11 +45,11 @@ export const apis = {
   mainGet: () => instance.get("/api/main"),
 
   //POST작성 POST
-  postWrite: (fromData) => formDatas.post("/api/post", fromData),
+  postWrite: (formData) => formDatas.post("/api/post", formData),
 
   // POST수정 PUT
-  postEdit: (fromData, postid) =>
-    formDatas.put(`/api/post/${postid}`, fromData),
+  postEdit: (formData, postid) =>
+    formDatas.put(`/api/post/${postid}`, formData),
 
   // POST삭제 DELETE
   postDelete: (postid) => instance.delete(`/api/post/${postid}`),

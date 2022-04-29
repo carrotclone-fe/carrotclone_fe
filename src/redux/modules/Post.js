@@ -85,7 +85,6 @@ const addPostDB = (title, imageList, category, price, content, username) => {
     apis
       .postWrite(fromData)
       .then((res) => {
-        history.replace("/main");
         console.log(res);
         history.replace("/main");
       })

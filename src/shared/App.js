@@ -12,9 +12,10 @@ import Start from "../pages/Start";
 import Write from "../pages/Write";
 import React from "react";
 import Permit from "./Permit";
+import Test from "../pages/Test";
 
 function App() {
-  Permit();
+  // Permit();
 
   return (
     <React.Fragment>
@@ -24,6 +25,7 @@ function App() {
         <Route path="/signup" exact component={Signup} />
         <Route path="/main" exact component={Main} />
         <Route path="/write" exact component={Write} />
+        <Route path="/test" exact component={Test} />
         <Route path="/write/:postid" exact component={Write} />
         <Route path="/detail/:postid" exact component={Detail} />
       </ConnectedRouter>

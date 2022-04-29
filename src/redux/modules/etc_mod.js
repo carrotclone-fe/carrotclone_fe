@@ -23,12 +23,14 @@ const status_DB = (postid, status) => {
         console.log(res);
 
         let new_Arr = getState().Post.list.map((v) => {
-          if (v.postid === postid) { return { ...v, status: status } }
+          if (v.postid === postid) {
+            return { ...v, status: status };
+          }
 
-          return v
-        })
+          return v;
+        });
 
-        dispatch(PostActions.setPost(new_Arr))
+        dispatch(PostActions.setPost(new_Arr));
       })
       .catch((err) => {
         console.log(err);
@@ -38,31 +40,25 @@ const status_DB = (postid, status) => {
 
 const like_DB = (postid, love) => {
   return (dispatch, getState, { history }) => {
-
     apis
       .like(postid)
       .then((res) => {
         console.log(res);
 
-        let new_Arr = { ...getState().Post.detailList, love: !love }
+        let new_Arr = { ...getState().Post.detailList, love: !love };
 
-        dispatch(PostActions.setDetail(new_Arr))
+        dispatch(PostActions.setDetail(new_Arr));
       })
       .catch((err) => {
         console.log(err);
       });
-
   };
 };
 
 export default handleActions(
   {
-    [STATUS]: (state, action) =>
-      produce(state, (draft) => {
-      }),
-    [LIKE]: (state, action) =>
-      produce(state, (draft) => {
-      }),
+    [STATUS]: (state, action) => produce(state, (draft) => {}),
+    [LIKE]: (state, action) => produce(state, (draft) => {}),
   },
   initialState
 );

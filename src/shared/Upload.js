@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CardGrid, Image } from "../elements";
 import { BiX } from "react-icons/bi";
 import styled from "styled-components";
 import { HiUpload } from "react-icons/hi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { imgActions } from "../redux/modules/image";
 
-const Upload = () => {
+const Upload = (image) => {
+  const eddit = image.image;
   const dispatch = useDispatch();
   const [imgPreview, setImgPreview] = useState([]);
+  const [isUrl, setUrl] = useState([]);
 
   const uploadFile = (e) => {
     const imageList = e.target.files;
@@ -31,11 +33,27 @@ const Upload = () => {
         imgList.push(imageList[key]);
       }
     }
+
     dispatch(imgActions.setPre(imgList));
   };
 
-  const handleDeleteImage = (id) => {
-    dispatch(imgActions.deletePre(id));
+  useEffect(() => {
+    let editPree = [];
+    for (let i = 0; i < eddit.length; i++) {
+      editPree.push(eddit[i]);
+    }
+    setImgPreview(editPree);
+    dispatch(imgActions.setPre(editPree));
+  }, [eddit]);
+
+  const handleDeleteImage = (x, id) => {
+    if (x.indexOf("hyemco-butket") !== -1) {
+      dispatch(imgActions.editUrl(x));
+      dispatch(imgActions.deletePre(id));
+    } else {
+      dispatch(imgActions.deletePre(id));
+    }
+
     setImgPreview(imgPreview.filter((b, idx) => idx !== id));
   };
 
@@ -52,10 +70,9 @@ const Upload = () => {
               <BiX
                 type="button"
                 onClick={() => {
-                  handleDeleteImage(id);
+                  handleDeleteImage(image, id);
                 }}
               />
-
               <ImageList src={`${image}`} alt={`${image}-${id}`} />
             </CardGrid>
           );
